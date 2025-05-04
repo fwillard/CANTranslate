@@ -399,3 +399,6 @@ History/
 
 # VSCode projects
 project_vscode_compiled.exe
+
+#python
+.venv/

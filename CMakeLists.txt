@@ -51,15 +51,24 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
 )
 
+file(GLOB DRONECAN_SOURCES 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/src/*.c
+)
+
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    ${DRONECAN_SOURCES}
+    Core/Src/cantranslate.c
+    Core/Src/queue.c
+    Core/Src/timer.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
     ${CMAKE_CURRENT_SOURCE_DIR}/external/libcanard
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/include
 )
 
 # Add project symbols (macros)
@@ -70,6 +79,6 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-
+    libcanard
     # Add user defined libraries
 )

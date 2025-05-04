@@ -1,3 +1,9 @@
 [submodule "external/libcanard"]
 	path = external/libcanard
 	url = https://github.com/dronecan/libcanard.git
+[submodule "external/dronecan_dsdlc"]
+	path = external/dronecan_dsdlc
+	url = https://github.com/dronecan/dronecan_dsdlc
+[submodule "external/DSDL"]
+	path = external/DSDL
+	url = https://github.com/dronecan/DSDL

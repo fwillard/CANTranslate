@@ -41,6 +41,25 @@ rule C_EXECUTABLE_LINKER__CANTranslate_Debug
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__libcanard_unscanned_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}/opt/stm32cubeclt/GNU-tools-for-STM32/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__libcanard_Debug
+  command = $PRE_LINK && /usr/sbin/cmake -E rm -f $TARGET_FILE && /opt/stm32cubeclt/GNU-tools-for-STM32/bin/arm-none-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /opt/stm32cubeclt/GNU-tools-for-STM32/bin/arm-none-eabi-ranlib $TARGET_FILE && $POST_BUILD
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for running custom commands.
 
 rule CUSTOM_COMMAND
