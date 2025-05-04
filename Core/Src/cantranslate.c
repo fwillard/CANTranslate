@@ -2,6 +2,9 @@
 #include "main.h"
 #include "queue.h"
 #include "timer.h"
+
+#include "version.h"
+
 #include <string.h>
 #include <stdio.h>
 
@@ -50,6 +53,18 @@ void print_can_status(CAN_HandleTypeDef *hcan)
         printf("Error Warning state\n");
 
     printf("\n");
+}
+
+void get_unique_id(uint8_t unique_id[16])
+{
+    // Correct memory location for STM32F103C6T6
+    const uint32_t *id_base = (const uint32_t *)0x1FFFF7E8;
+
+    // Copy the 96-bit ID
+    memcpy(unique_id, id_base, 12);
+
+    // Pad the remaining 4 bytes with zeros
+    memset(&unique_id[12], 0, 4);
 }
 
 HAL_StatusTypeDef config_CAN_Filters(CAN_HandleTypeDef *hcan)
@@ -199,14 +214,16 @@ void handleGetNodeInfo(CanardInstance *ins, CanardRxTransfer *transfer)
     pkt.status = node_status;
 
     // fill in your major and minor firmware version
-    pkt.software_version.major = 1;
-    pkt.software_version.minor = 2;
-    pkt.software_version.optional_field_flags = 0;
-    pkt.software_version.vcs_commit = 0; // should put git hash in here
+    pkt.software_version.major = PROJECT_VERSION_MAJOR;
+    pkt.software_version.minor = PROJECT_VERSION_MINOR;
+    pkt.software_version.optional_field_flags = PROJECT_VERSION_PATCH;
+    pkt.software_version.vcs_commit = GIT_HASH; // should put git hash in here
 
     // should fill in hardware version
-    pkt.hardware_version.major = 2;
-    pkt.hardware_version.minor = 3;
+    pkt.hardware_version.major = 1;
+    pkt.hardware_version.minor = 0;
+
+    get_unique_id(pkt.hardware_version.unique_id);
 
     strncpy((char *)pkt.name.data, "CANTranslate", sizeof(pkt.name.data));
     pkt.name.len = strnlen((char *)pkt.name.data, sizeof(pkt.name.data));
