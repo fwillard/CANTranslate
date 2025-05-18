@@ -1,0 +1,7 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "AP7381")(type "KiCad")(uri "C:/Users/finnw/Downloads/AP7381_33Y_13/KiCADv6/2025-05-16_17-08-59.kicad_sym")(options "")(descr ""))
+  (lib (name "LTC4418")(type "KiCad")(uri "C:/Users/finnw/Downloads/LTC4418CUF_TRPBF/KiCADv6/2025-05-16_18-13-26.kicad_sym")(options "")(descr ""))
+  (lib (name "SM04B-GHS-TB(LF)(SN)")(type "EasyEDA (JLCEDA) Std")(uri "C:/Users/finnw/Downloads/SCHLIB_SM04B-GHS-TB(LF)(SN)_2025-05-16.json")(options "")(descr ""))
+  (lib (name "CustomParts")(type "KiCad")(uri "${KIPRJMOD}/CustomParts.kicad_sym")(options "")(descr ""))
+)
