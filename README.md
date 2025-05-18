@@ -1,6 +1,6 @@
 # CANTranslate
 
-[![License: MIT & CERN-OHL-P-2.0](https://img.shields.io/badge/License-MIT%20%26%20CERN--OHL--P--2.0-blue.svg)](LICENSE.md)
+[![License: MIT & CERN-OHL-P-2.0](https://img.shields.io/badge/License-MIT%20%26%20CERN--OHL--P--2.0-blue.svg)](LICENSE.MD)
 
 ## Overview
 
