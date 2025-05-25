@@ -81,7 +81,7 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 file(GLOB DRONECAN_SOURCES 
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/src/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSDLC/src/*.c
 )
 
 # Add sources to executable
@@ -97,7 +97,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
     ${CMAKE_CURRENT_SOURCE_DIR}/external/libcanard
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSDLC/include
     ${CMAKE_BINARY_DIR}
 )
 
