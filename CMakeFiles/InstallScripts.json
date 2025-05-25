@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/finn/dev/CANTranslate/cmake_install.cmake",
-		"/home/finn/dev/CANTranslate/cmake/stm32cubemx/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
