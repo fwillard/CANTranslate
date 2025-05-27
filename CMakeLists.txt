@@ -88,9 +88,7 @@ file(GLOB DRONECAN_SOURCES
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     ${DRONECAN_SOURCES}
-    # Core/Src/cantranslate.c
-    # Core/Src/queue.c
-    # Core/Src/timer.c
+    Core/Src/can_interface.c
 )
 
 # Add include paths

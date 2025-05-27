@@ -3,7 +3,8 @@
         "cantranslate.h": "c",
         "stm32f1xx_hal.h": "c",
         "main.h": "c",
-        "stm32f1xx_hal_def.h": "c"
+        "stm32f1xx_hal_def.h": "c",
+        "task.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }
