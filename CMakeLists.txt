@@ -72,7 +72,7 @@ add_subdirectory(cmake/stm32cubemx)
 
 # Add libcanard
 add_library(libcanard STATIC
-    external/libcanard/canard.c
+    Middlewares/Third_Party/libcanard/canard.c
 )
 
 # Link directories setup
@@ -94,7 +94,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/libcanard
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/libcanard
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSDLC/include
     ${CMAKE_BINARY_DIR}
 )

@@ -33,7 +33,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     memcpy(frame.data, rx_data, rx_header.DLC);
     frame.timestamp_us = 0;
 
-    xQueueSendFromISR(dronecan_rx_queue, &frame, &xHigherPriorityTaskWoken);
+    // xQueueSendFromISR(dronecan_rx_queue, &frame, &xHigherPriorityTaskWoken);
 
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
