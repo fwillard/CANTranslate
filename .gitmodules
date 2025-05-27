@@ -1,0 +1,9 @@
+[submodule "Middlewares/Third_Party/DSDL"]
+	path = Middlewares/Third_Party/DSDL
+	url = https://github.com/dronecan/DSDL
+[submodule "Middlewares/Third_Party/dronecan_dsdlc"]
+	path = Middlewares/Third_Party/dronecan_dsdlc
+	url = https://github.com/dronecan/dronecan_dsdlc
+[submodule "Middlewares/Third_Party/libcanard"]
+	path = Middlewares/Third_Party/libcanard
+	url = https://github.com/dronecan/libcanard.git
