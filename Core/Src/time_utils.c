@@ -1,0 +1,18 @@
+#include "time_utils.h"
+#include "cmsis_os.h"
+#include "stm32f1xx_hal.h"
+
+volatile uint32_t timer_overflows = 0;
+extern osMutexId_t micros_mutexHandle;
+extern TIM_HandleTypeDef htim2;
+
+uint64_t micros64()
+{
+    osMutexAcquire(micros_mutexHandle, osWaitForever);
+
+    uint16_t timer_count = __HAL_TIM_GET_COUNTER(&htim2);
+    uint64_t timestamp = ((uint64_t)timer_overflows << 16) | timer_count;
+
+    osMutexRelease(micros_mutexHandle);
+    return timestamp;
+}

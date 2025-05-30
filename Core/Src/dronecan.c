@@ -3,25 +3,41 @@
 #include "canard.h"
 #include "cmsis_os.h"
 #include "logging.h"
+#include "time_utils.h"
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
 
-void ProcessDroneCANFrame(CanardCANFrame *frame)
-{
-    // Example processing - you'll customize this based on your DroneCAN protocol needs
-    LOG_DEBUG("Received CAN Frame: ID=0x%08X, Len=%d\n",
-              frame->id, frame->data_len);
+// Initialize DroneCAN library here
+static CanardInstance canard;
+static uint8_t memory_pool[1024];
 
-    LOG_DEBUG("\n");
+#define NODE_ID 97
+
+static bool shouldAcceptTransfer(const CanardInstance *ins,
+                                 uint64_t *out_data_type_signature,
+                                 uint16_t data_type_id,
+                                 CanardTransferType transfer_type,
+                                 uint8_t source_node_id)
+{
+    return true;
+}
+
+static void onTransferReceived(CanardInstance *ins, CanardRxTransfer *transfer)
+{
 }
 
 void StartDronecanTask(void *argument)
 {
     (void)argument; // Prevent unused argument warning
 
-    // Initialize DroneCAN library here
-    // CanardInstance canard_instance;
-    // canardInit(&canard_instance, ...);
+    canardInit(&canard,
+               memory_pool,
+               sizeof(memory_pool),
+               onTransferReceived,
+               shouldAcceptTransfer,
+               NULL);
+
+    canardSetLocalNodeID(&canard, NODE_ID);
 
     CanardCANFrame rx_frame;
     osStatus_t status;
@@ -33,8 +49,7 @@ void StartDronecanTask(void *argument)
         status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, osWaitForever);
         if (status == osOK)
         {
-            // Process the received CAN frame
-            ProcessDroneCANFrame(&rx_frame);
+            canardHandleRxFrame(&canard, &rx_frame, micros64());
         }
         else
         {

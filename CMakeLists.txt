@@ -92,6 +92,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/dronecan.c
     Core/Src/cansimple.c
     Core/Src/logging.c
+    Core/Src/time_utils.c
 )
 
 # Add include paths
