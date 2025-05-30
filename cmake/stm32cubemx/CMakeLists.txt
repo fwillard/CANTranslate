@@ -25,7 +25,9 @@ target_include_directories(stm32cubemx INTERFACE
 
 target_sources(stm32cubemx INTERFACE
     ../../Core/Src/main.c
+    ../../Core/Src/gpio.c
     ../../Core/Src/freertos.c
+    ../../Core/Src/can.c
     ../../Core/Src/stm32f1xx_it.c
     ../../Core/Src/stm32f1xx_hal_msp.c
     ../../Core/Src/stm32f1xx_hal_timebase_tim.c
@@ -43,9 +45,6 @@ target_sources(stm32cubemx INTERFACE
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
-    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c
-    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.c
-    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c
     ../../Core/Src/system_stm32f1xx.c
     ../../Middlewares/Third_Party/FreeRTOS/Source/croutine.c
     ../../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
