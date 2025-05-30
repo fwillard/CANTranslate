@@ -10534,7 +10534,7 @@
 			(net 1 "GND")
 			(pinfunction "SHIELD")
 			(pintype "passive")
-			(uuid "022f0e3d-43ca-4549-a408-e56e6b034698")
+			(uuid "7a9e955d-d054-4b7b-b0ea-3f3276cc07f8")
 		)
 		(pad "S1" thru_hole oval
 			(at 4.32 -3.105 90)
@@ -10546,7 +10546,7 @@
 			(net 1 "GND")
 			(pinfunction "SHIELD")
 			(pintype "passive")
-			(uuid "022f0e3d-43ca-4549-a408-e56e6b034698")
+			(uuid "c999b728-2c32-404f-a8fc-d27dce8c0002")
 		)
 		(pad "S1" thru_hole oval
 			(at 4.32 1.075 90)
@@ -10558,7 +10558,7 @@
 			(net 1 "GND")
 			(pinfunction "SHIELD")
 			(pintype "passive")
-			(uuid "022f0e3d-43ca-4549-a408-e56e6b034698")
+			(uuid "9cbccc74-437a-47c5-b69c-982d13eb4c3e")
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step"
@@ -11132,7 +11132,7 @@
 				)
 			)
 		)
-		(property "Value" "STM32F103C8T6"
+		(property "Value" "STM32F303CCT6"
 			(at 0 5.85 0)
 			(layer "F.Fab")
 			(uuid "77701030-3fc1-457a-871b-3acec1e5100d")
@@ -11143,7 +11143,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf"
+		(property "Datasheet" "https://www.st.com/resource/en/datasheet/stm32f303cc.pdf"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -11155,7 +11155,7 @@
 				)
 			)
 		)
-		(property "Description" "STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48"
+		(property "Description" "STMicroelectronics Arm Cortex-M4 MCU, 256KB flash, 48KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -11167,7 +11167,7 @@
 				)
 			)
 		)
-		(property "LCSC" " C8734"
+		(property "LCSC" "C81523"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11584,7 +11584,7 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
 			(net 4 "/HSE_IN")
-			(pinfunction "PD0")
+			(pinfunction "PF0")
 			(pintype "bidirectional")
 			(uuid "1d912c4a-da66-47a5-b70c-8e24749254ef")
 		)
@@ -11594,7 +11594,7 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
 			(net 5 "/HSE_OUT")
-			(pinfunction "PD1")
+			(pinfunction "PF1")
 			(pintype "bidirectional")
 			(uuid "3644416b-edab-4f82-a6d4-9c5edf9f585a")
 		)
@@ -13288,7 +13288,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "CANTranslate v0.1"
+	(gr_text "CANTranslate v0.2"
 		(at 211.5 99 0)
 		(layer "F.SilkS" knockout)
 		(uuid "0bf19b02-79b7-401d-ba45-2b27670ced0a")
@@ -13301,7 +13301,7 @@
 			)
 			(justify left bottom)
 		)
-		(render_cache "CANTranslate v0.1" 0
+		(render_cache "CANTranslate v0.2" 0
 			(polygon
 				(pts
 					(xy 212.242559 98.45875) (xy 212.438625 98.521277) (xy 212.41065 98.602292) (xy 212.376098 98.66871)
@@ -13510,10 +13510,19 @@
 			)
 			(polygon
 				(pts
-					(xy 223.556376 98.83) (xy 223.364401 98.83) (xy 223.364401 98.108628) (xy 223.290456 98.168851)
-					(xy 223.208133 98.217728) (xy 223.116434 98.25554) (xy 223.116434 98.079685) (xy 223.16484 98.059883)
-					(xy 223.218958 98.029411) (xy 223.27971 97.986263) (xy 223.333499 97.936516) (xy 223.373282 97.883185)
-					(xy 223.40061 97.825673) (xy 223.556376 97.825673)
+					(xy 223.713485 98.650237) (xy 223.713485 98.83) (xy 223.040657 98.83) (xy 223.052721 98.764273)
+					(xy 223.074444 98.700789) (xy 223.106236 98.638941) (xy 223.147226 98.581194) (xy 223.216131 98.503102)
+					(xy 223.322086 98.39946) (xy 223.437919 98.286661) (xy 223.48121 98.23594) (xy 223.503899 98.195058)
+					(xy 223.516713 98.156266) (xy 223.520839 98.118764) (xy 223.516582 98.077427) (xy 223.504856 98.045319)
+					(xy 223.486339 98.020334) (xy 223.461352 98.001704) (xy 223.430173 97.990069) (xy 223.391024 97.985896)
+					(xy 223.352479 97.990208) (xy 223.321144 98.002366) (xy 223.295403 98.022105) (xy 223.276526 98.048601)
+					(xy 223.26241 98.087285) (xy 223.254431 98.142212) (xy 223.063189 98.1231) (xy 223.077713 98.043903)
+					(xy 223.101014 97.981419) (xy 223.131971 97.932533) (xy 223.170411 97.894916) (xy 223.216993 97.865306)
+					(xy 223.269379 97.843757) (xy 223.32858 97.830351) (xy 223.395847 97.825673) (xy 223.469716 97.83123)
+					(xy 223.531881 97.846875) (xy 223.584381 97.871638) (xy 223.628794 97.905357) (xy 223.66606 97.947901)
+					(xy 223.692206 97.994455) (xy 223.70804 98.045897) (xy 223.713485 98.103499) (xy 223.707385 98.169506)
+					(xy 223.689244 98.231849) (xy 223.659194 98.29207) (xy 223.612369 98.359466) (xy 223.569448 98.407424)
+					(xy 223.486706 98.486838) (xy 223.371606 98.597114) (xy 223.332344 98.650237)
 				)
 			)
 		)
