@@ -183,19 +183,19 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle)
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   // Parse header, dispatch to dronecan_rx_queue
-  CAN_RxHeaderTypeDef rxHeader;
-  uint8_t rxData[8];
+  CAN_RxHeaderTypeDef rx_header;
+  uint8_t rx_data[8];
 
-  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData) != HAL_OK)
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK)
   {
     // drop frame and return
     return;
   }
   CanardCANFrame rx_frame;
 
-  rx_frame.id = rxHeader.ExtId;
-  rx_frame.data_len = rxHeader.DLC;
-  memcpy(rx_frame.data, rxData, rxHeader.DLC);
+  rx_frame.id = rx_header.ExtId;
+  rx_frame.data_len = rx_header.DLC;
+  memcpy(rx_frame.data, rx_data, rx_header.DLC);
   rx_frame.iface_id = 0; // Only one CAN interface
 
   osMessageQueuePut(dronecan_rx_queueHandle, &rx_frame, 0, 0);
@@ -203,7 +203,24 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-  // Dispatch to cansimple_rx_queue
+  // Parse header, dispatch to cansimple_rx_queue
+  CAN_RxHeaderTypeDef rx_header;
+  uint8_t rx_data[8];
+
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK)
+  {
+    // drop frame and return
+    return;
+  }
+
+  CANFrame rx_frame;
+  rx_frame.id = rx_header.StdId;
+  rx_frame.dlc = rx_header.DLC;
+  rx_frame.extended = (rx_header.IDE == CAN_ID_EXT); // Should never be true for FIFO1
+  rx_frame.rtr = rx_header.RTR;
+  memcpy(rx_frame.data, rx_data, rx_header.DLC);
+
+  osMessageQueuePut(cansimple_rx_queueHandle, &rx_frame, 0, 0);
 }
 
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
