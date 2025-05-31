@@ -34,6 +34,10 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
+typedef StaticTask_t osStaticThreadDef_t;
+typedef StaticQueue_t osStaticMessageQDef_t;
+typedef StaticSemaphore_t osStaticMutexDef_t;
+typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -55,62 +59,118 @@
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
-    .name = "defaultTask",
-    .stack_size = 128 * 4,
-    .priority = (osPriority_t)osPriorityNormal,
+  .name = "defaultTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for dronecan_task */
 osThreadId_t dronecan_taskHandle;
+uint32_t dronecan_taskBuffer[ 512 ];
+osStaticThreadDef_t dronecan_taskControlBlock;
 const osThreadAttr_t dronecan_task_attributes = {
-    .name = "dronecan_task",
-    .stack_size = 512 * 4,
-    .priority = (osPriority_t)osPriorityAboveNormal,
+  .name = "dronecan_task",
+  .cb_mem = &dronecan_taskControlBlock,
+  .cb_size = sizeof(dronecan_taskControlBlock),
+  .stack_mem = &dronecan_taskBuffer[0],
+  .stack_size = sizeof(dronecan_taskBuffer),
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for cansimple_task */
 osThreadId_t cansimple_taskHandle;
+uint32_t cansimple_taskBuffer[ 256 ];
+osStaticThreadDef_t cansimple_taskControlBlock;
 const osThreadAttr_t cansimple_task_attributes = {
-    .name = "cansimple_task",
-    .stack_size = 256 * 4,
-    .priority = (osPriority_t)osPriorityAboveNormal,
+  .name = "cansimple_task",
+  .cb_mem = &cansimple_taskControlBlock,
+  .cb_size = sizeof(cansimple_taskControlBlock),
+  .stack_mem = &cansimple_taskBuffer[0],
+  .stack_size = sizeof(cansimple_taskBuffer),
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for can_tx_task */
 osThreadId_t can_tx_taskHandle;
+uint32_t can_tx_taskBuffer[ 256 ];
+osStaticThreadDef_t can_tx_taskControlBlock;
 const osThreadAttr_t can_tx_task_attributes = {
-    .name = "can_tx_task",
-    .stack_size = 256 * 4,
-    .priority = (osPriority_t)osPriorityNormal,
+  .name = "can_tx_task",
+  .cb_mem = &can_tx_taskControlBlock,
+  .cb_size = sizeof(can_tx_taskControlBlock),
+  .stack_mem = &can_tx_taskBuffer[0],
+  .stack_size = sizeof(can_tx_taskBuffer),
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for logging_task */
 osThreadId_t logging_taskHandle;
+uint32_t logging_taskBuffer[ 256 ];
+osStaticThreadDef_t logging_taskControlBlock;
 const osThreadAttr_t logging_task_attributes = {
-    .name = "logging_task",
-    .stack_size = 256 * 4,
-    .priority = (osPriority_t)osPriorityLow,
+  .name = "logging_task",
+  .cb_mem = &logging_taskControlBlock,
+  .cb_size = sizeof(logging_taskControlBlock),
+  .stack_mem = &logging_taskBuffer[0],
+  .stack_size = sizeof(logging_taskBuffer),
+  .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for dronecan_rx_queue */
 osMessageQueueId_t dronecan_rx_queueHandle;
+uint8_t dronecan_rx_queueBuffer[ 8 * sizeof( CanardCANFrame ) ];
+osStaticMessageQDef_t dronecan_rx_queueControlBlock;
 const osMessageQueueAttr_t dronecan_rx_queue_attributes = {
-    .name = "dronecan_rx_queue"};
+  .name = "dronecan_rx_queue",
+  .cb_mem = &dronecan_rx_queueControlBlock,
+  .cb_size = sizeof(dronecan_rx_queueControlBlock),
+  .mq_mem = &dronecan_rx_queueBuffer,
+  .mq_size = sizeof(dronecan_rx_queueBuffer)
+};
 /* Definitions for log_queue */
 osMessageQueueId_t log_queueHandle;
+uint8_t log_queueBuffer[ 6 * sizeof( log_message_t ) ];
+osStaticMessageQDef_t log_queueControlBlock;
 const osMessageQueueAttr_t log_queue_attributes = {
-    .name = "log_queue"};
+  .name = "log_queue",
+  .cb_mem = &log_queueControlBlock,
+  .cb_size = sizeof(log_queueControlBlock),
+  .mq_mem = &log_queueBuffer,
+  .mq_size = sizeof(log_queueBuffer)
+};
 /* Definitions for cansimple_rx_queue */
 osMessageQueueId_t cansimple_rx_queueHandle;
+uint8_t cansimple_rx_queueBuffer[ 6 * sizeof( CANFrame ) ];
+osStaticMessageQDef_t cansimple_rx_queueControlBlock;
 const osMessageQueueAttr_t cansimple_rx_queue_attributes = {
-    .name = "cansimple_rx_queue"};
+  .name = "cansimple_rx_queue",
+  .cb_mem = &cansimple_rx_queueControlBlock,
+  .cb_size = sizeof(cansimple_rx_queueControlBlock),
+  .mq_mem = &cansimple_rx_queueBuffer,
+  .mq_size = sizeof(cansimple_rx_queueBuffer)
+};
 /* Definitions for can_tx_queue */
 osMessageQueueId_t can_tx_queueHandle;
+uint8_t can_tx_queueBuffer[ 8 * sizeof( CANFrame ) ];
+osStaticMessageQDef_t can_tx_queueControlBlock;
 const osMessageQueueAttr_t can_tx_queue_attributes = {
-    .name = "can_tx_queue"};
+  .name = "can_tx_queue",
+  .cb_mem = &can_tx_queueControlBlock,
+  .cb_size = sizeof(can_tx_queueControlBlock),
+  .mq_mem = &can_tx_queueBuffer,
+  .mq_size = sizeof(can_tx_queueBuffer)
+};
 /* Definitions for micros_mutex */
 osMutexId_t micros_mutexHandle;
+osStaticMutexDef_t micros_mutexControlBlock;
 const osMutexAttr_t micros_mutex_attributes = {
-    .name = "micros_mutex"};
+  .name = "micros_mutex",
+  .cb_mem = &micros_mutexControlBlock,
+  .cb_size = sizeof(micros_mutexControlBlock),
+};
 /* Definitions for can_tx_sem */
 osSemaphoreId_t can_tx_semHandle;
+osStaticSemaphoreDef_t can_tx_semControlBlock;
 const osSemaphoreAttr_t can_tx_sem_attributes = {
-    .name = "can_tx_sem"};
+  .name = "can_tx_sem",
+  .cb_mem = &can_tx_semControlBlock,
+  .cb_size = sizeof(can_tx_semControlBlock),
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -172,12 +232,11 @@ void vApplicationMallocFailedHook(void)
 /* USER CODE END 5 */
 
 /**
- * @brief  FreeRTOS initialization
- * @param  None
- * @retval None
- */
-void MX_FREERTOS_Init(void)
-{
+  * @brief  FreeRTOS initialization
+  * @param  None
+  * @retval None
+  */
+void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -203,16 +262,16 @@ void MX_FREERTOS_Init(void)
 
   /* Create the queue(s) */
   /* creation of dronecan_rx_queue */
-  dronecan_rx_queueHandle = osMessageQueueNew(8, sizeof(CanardCANFrame), &dronecan_rx_queue_attributes);
+  dronecan_rx_queueHandle = osMessageQueueNew (8, sizeof(CanardCANFrame), &dronecan_rx_queue_attributes);
 
   /* creation of log_queue */
-  log_queueHandle = osMessageQueueNew(6, sizeof(log_message_t), &log_queue_attributes);
+  log_queueHandle = osMessageQueueNew (6, sizeof(log_message_t), &log_queue_attributes);
 
   /* creation of cansimple_rx_queue */
-  cansimple_rx_queueHandle = osMessageQueueNew(6, sizeof(CANFrame), &cansimple_rx_queue_attributes);
+  cansimple_rx_queueHandle = osMessageQueueNew (6, sizeof(CANFrame), &cansimple_rx_queue_attributes);
 
   /* creation of can_tx_queue */
-  can_tx_queueHandle = osMessageQueueNew(8, sizeof(CANFrame), &can_tx_queue_attributes);
+  can_tx_queueHandle = osMessageQueueNew (8, sizeof(CANFrame), &can_tx_queue_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -241,6 +300,7 @@ void MX_FREERTOS_Init(void)
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
+
 }
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -275,3 +335,4 @@ void print_task_stack_highwatermarks(void)
 }
 
 /* USER CODE END Application */
+
