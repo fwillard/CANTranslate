@@ -58,9 +58,14 @@ typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
+uint32_t defaultTaskBuffer[ 256 ];
+osStaticThreadDef_t defaultTaskControlBlock;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 128 * 4,
+  .cb_mem = &defaultTaskControlBlock,
+  .cb_size = sizeof(defaultTaskControlBlock),
+  .stack_mem = &defaultTaskBuffer[0],
+  .stack_size = sizeof(defaultTaskBuffer),
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for dronecan_task */
@@ -174,7 +179,7 @@ const osSemaphoreAttr_t can_tx_sem_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-void print_task_stack_highwatermarks(void);
+void log_task_stack_highwatermarks(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -224,7 +229,7 @@ void vApplicationMallocFailedHook(void)
   to query the size of free heap space that remains (although it does not
   provide information on how the remaining heap might be fragmented). */
 
-  printf("Malloc failed!\n");
+  LOG_DEBUG("Malloc failed!\n");
   taskDISABLE_INTERRUPTS();
   for (;;)
     ;
@@ -316,7 +321,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for (;;)
   {
-    osDelay(1);
+    log_task_stack_highwatermarks();
+    osDelay(60000);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -324,14 +330,14 @@ void StartDefaultTask(void *argument)
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 
-void print_task_stack_highwatermarks(void)
+void log_task_stack_highwatermarks(void)
 {
-  printf("Default task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(defaultTaskHandle));
-  printf("Dronecan task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(dronecan_taskHandle));
-  printf("Cansimple task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(cansimple_taskHandle));
-  printf("Can Tx task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(can_tx_taskHandle));
-  printf("Logging task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(logging_taskHandle));
-  printf("\n");
+  LOG_DEBUG("Default task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(defaultTaskHandle));
+  LOG_DEBUG("Dronecan task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(dronecan_taskHandle));
+  LOG_DEBUG("Cansimple task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(cansimple_taskHandle));
+  LOG_DEBUG("Can Tx task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(can_tx_taskHandle));
+  LOG_DEBUG("Logging task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(logging_taskHandle));
+  LOG_DEBUG("\n");
 }
 
 /* USER CODE END Application */

@@ -31,6 +31,8 @@ static bool shouldAcceptTransfer(const CanardInstance *ins,
 
 static void onTransferReceived(CanardInstance *ins, CanardRxTransfer *transfer)
 {
+    LOG_DEBUG("Received transfer: ID=%d, Type=%d, Source=%d\n",
+              transfer->data_type_id, transfer->transfer_type, transfer->source_node_id);
 }
 
 static void send_NodeStatus(void)
@@ -41,8 +43,7 @@ static void send_NodeStatus(void)
     node_status.health = UAVCAN_PROTOCOL_NODESTATUS_HEALTH_OK;
     node_status.mode = UAVCAN_PROTOCOL_NODESTATUS_MODE_OPERATIONAL;
     node_status.sub_mode = 0;
-    // put whatever you like in here for display in GUI
-    node_status.vendor_specific_status_code = 1234;
+    node_status.vendor_specific_status_code = 0;
 
     uint32_t len = uavcan_protocol_NodeStatus_encode(&node_status, buffer);
 
@@ -128,6 +129,8 @@ void StartDronecanTask(void *argument)
         // Process incoming frame if available
         if (status == osOK)
         {
+            LOG_DEBUG("Received CAN frame: ID=0x%03X, DLC=%d\n",
+                      rx_frame.id, rx_frame.data_len);
             canardHandleRxFrame(&canard, &rx_frame, ts);
         }
         else if (status != osErrorTimeout)
