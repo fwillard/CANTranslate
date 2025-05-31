@@ -30,6 +30,7 @@
 #include <stdio.h>
 #include "time_utils.h"
 #include <inttypes.h>
+#include "can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,14 +95,26 @@ const osMessageQueueAttr_t dronecan_rx_queue_attributes = {
 osMessageQueueId_t log_queueHandle;
 const osMessageQueueAttr_t log_queue_attributes = {
     .name = "log_queue"};
+/* Definitions for cansimple_rx_queue */
+osMessageQueueId_t cansimple_rx_queueHandle;
+const osMessageQueueAttr_t cansimple_rx_queue_attributes = {
+    .name = "cansimple_rx_queue"};
+/* Definitions for can_tx_queue */
+osMessageQueueId_t can_tx_queueHandle;
+const osMessageQueueAttr_t can_tx_queue_attributes = {
+    .name = "can_tx_queue"};
 /* Definitions for micros_mutex */
 osMutexId_t micros_mutexHandle;
 const osMutexAttr_t micros_mutex_attributes = {
     .name = "micros_mutex"};
+/* Definitions for can_tx_sem */
+osSemaphoreId_t can_tx_semHandle;
+const osSemaphoreAttr_t can_tx_sem_attributes = {
+    .name = "can_tx_sem"};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+void print_task_stack_highwatermarks(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -114,6 +127,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName);
+void vApplicationMallocFailedHook(void);
 
 /* USER CODE BEGIN 4 */
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName)
@@ -136,6 +150,27 @@ void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName)
 }
 /* USER CODE END 4 */
 
+/* USER CODE BEGIN 5 */
+void vApplicationMallocFailedHook(void)
+{
+  /* vApplicationMallocFailedHook() will only be called if
+  configUSE_MALLOC_FAILED_HOOK is set to 1 in FreeRTOSConfig.h. It is a hook
+  function that will get called if a call to pvPortMalloc() fails.
+  pvPortMalloc() is called internally by the kernel whenever a task, queue,
+  timer or semaphore is created. It is also called by various parts of the
+  demo application. If heap_1.c or heap_2.c are used, then the size of the
+  heap available to pvPortMalloc() is defined by configTOTAL_HEAP_SIZE in
+  FreeRTOSConfig.h, and the xPortGetFreeHeapSize() API function can be used
+  to query the size of free heap space that remains (although it does not
+  provide information on how the remaining heap might be fragmented). */
+
+  printf("Malloc failed!\n");
+  taskDISABLE_INTERRUPTS();
+  for (;;)
+    ;
+}
+/* USER CODE END 5 */
+
 /**
  * @brief  FreeRTOS initialization
  * @param  None
@@ -154,6 +189,10 @@ void MX_FREERTOS_Init(void)
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
+  /* Create the semaphores(s) */
+  /* creation of can_tx_sem */
+  can_tx_semHandle = osSemaphoreNew(3, 3, &can_tx_sem_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -168,6 +207,12 @@ void MX_FREERTOS_Init(void)
 
   /* creation of log_queue */
   log_queueHandle = osMessageQueueNew(6, sizeof(log_message_t), &log_queue_attributes);
+
+  /* creation of cansimple_rx_queue */
+  cansimple_rx_queueHandle = osMessageQueueNew(6, sizeof(CANFrame), &cansimple_rx_queue_attributes);
+
+  /* creation of can_tx_queue */
+  can_tx_queueHandle = osMessageQueueNew(8, sizeof(CANFrame), &can_tx_queue_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -218,5 +263,15 @@ void StartDefaultTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+
+void print_task_stack_highwatermarks(void)
+{
+  printf("Default task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(defaultTaskHandle));
+  printf("Dronecan task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(dronecan_taskHandle));
+  printf("Cansimple task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(cansimple_taskHandle));
+  printf("Can Tx task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(can_tx_taskHandle));
+  printf("Logging task stack high water mark: %u\n", uxTaskGetStackHighWaterMark(logging_taskHandle));
+  printf("\n");
+}
 
 /* USER CODE END Application */

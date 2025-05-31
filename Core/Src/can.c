@@ -25,8 +25,12 @@
 #include "logging.h"
 #include "cmsis_os.h"
 #include "canard.h"
+#include <stdio.h>
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
+extern osMessageQueueId_t cansimple_rx_queueHandle;
+extern osMessageQueueId_t can_tx_queueHandle;
+extern osSemaphoreId_t can_tx_semHandle;
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan;
@@ -98,7 +102,7 @@ void MX_CAN_Init(void)
   }
 
   // Enable receive interrupts
-  if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING) != HAL_OK)
+  if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING | CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK)
   {
     Error_Handler();
   }
@@ -135,6 +139,8 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle)
     __HAL_AFIO_REMAP_CAN1_2();
 
     /* CAN1 interrupt Init */
+    HAL_NVIC_SetPriority(USB_HP_CAN1_TX_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(USB_HP_CAN1_TX_IRQn);
     HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
     HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 5, 0);
@@ -163,6 +169,7 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle)
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8 | GPIO_PIN_9);
 
     /* CAN1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USB_HP_CAN1_TX_IRQn);
     HAL_NVIC_DisableIRQ(USB_LP_CAN1_RX0_IRQn);
     HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
     /* USER CODE BEGIN CAN1_MspDeInit 1 */
@@ -199,38 +206,83 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
   // Dispatch to cansimple_rx_queue
 }
 
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+  osSemaphoreRelease(can_tx_semHandle);
+}
+
+void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+  osSemaphoreRelease(can_tx_semHandle);
+}
+
+void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+  osSemaphoreRelease(can_tx_semHandle);
+}
+
+void build_tx_header(const CANFrame *frame, CAN_TxHeaderTypeDef *header)
+{
+  header->IDE = frame->extended ? CAN_ID_EXT : CAN_ID_STD;
+  header->RTR = frame->rtr ? CAN_RTR_REMOTE : CAN_RTR_DATA;
+  header->DLC = frame->dlc;
+  header->TransmitGlobalTime = DISABLE;
+
+  if (frame->extended)
+  {
+    header->ExtId = frame->id;
+    header->StdId = 0;
+  }
+  else
+  {
+    header->StdId = frame->id;
+    header->ExtId = 0;
+  }
+}
+
 void StartCANTxTask(void *argument)
 {
   /* USER CODE BEGIN StartCANTxTask */
   (void)argument; // Prevent unused argument warning
 
-  osDelay(100);
-  uint8_t count = 0;
+  CANFrame frame;
+  CAN_TxHeaderTypeDef tx_header;
+  uint32_t tx_mailbox;
+
   /* Infinite loop */
   for (;;)
   {
-    CAN_TxHeaderTypeDef tx_header;
-    uint8_t tx_data = count++;
-    uint32_t tx_mailbox;
 
-    tx_header.ExtId = 0x12345678;           // Example ID
-    tx_header.IDE = CAN_ID_EXT;             // Extended ID
-    tx_header.RTR = CAN_RTR_DATA;           // Data frame
-    tx_header.DLC = 1;                      // Data length
-    tx_header.TransmitGlobalTime = DISABLE; // No global time                  // Incrementing data for demonstration
-
-    if (HAL_CAN_AddTxMessage(&hcan, &tx_header, &tx_data, &tx_mailbox) != HAL_OK)
+    if (osMessageQueueGet(can_tx_queueHandle, &frame, NULL, osWaitForever) == osOK)
     {
-      // Handle error
-      LOG_ERROR("CAN Tx Error\n");
+      // Acquire semaphore: wait until at least one mailbox is free
+      if (osSemaphoreAcquire(can_tx_semHandle, osWaitForever) == osOK)
+      {
+        build_tx_header(&frame, &tx_header);
+
+        if (HAL_CAN_AddTxMessage(&hcan, &tx_header, frame.data, &tx_mailbox) != HAL_OK)
+        {
+          LOG_ERROR("CAN Tx Error\n");
+
+          // Release semaphore to avoid deadlock (mailbox wasn't taken)
+          osSemaphoreRelease(can_tx_semHandle);
+        }
+        else
+        {
+          LOG_DEBUG("CAN Tx Success: ID=0x%08X\n", tx_header.ExtId);
+        }
+      }
+      else
+      {
+        LOG_ERROR("CAN Tx Semaphore Error\n");
+      }
     }
     else
     {
-      LOG_DEBUG("CAN Tx Success: ID=0x%08X, Data=%02X\n", tx_header.ExtId, tx_data);
+      LOG_ERROR("CAN Tx Queue Error\n");
     }
-
-    osDelay(1000); // Delay for 1 second before next transmission
   }
+
   /* USER CODE END StartCANTxTask */
 }
 

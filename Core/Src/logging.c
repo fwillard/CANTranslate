@@ -35,7 +35,7 @@ void StartLoggingTask(void *argument)
                    log_msg.timestamp,
                    level_strings[log_msg.level],
                    log_msg.message);
-                }
+        }
         else
         {
             printf("ERROR: osMessageQueueGet failed with status: %d\n", status);

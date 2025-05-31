@@ -3,13 +3,20 @@
 #include "canard.h"
 #include "cmsis_os.h"
 #include "logging.h"
+#include <stdio.h>
 #include "time_utils.h"
+#include <dronecan_msgs.h>
+#include "can.h"
+#include <string.h>
+
+#define MAX_TX_FRAMES_PER_LOOP 5 // tune as needed
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
+extern osMessageQueueId_t can_tx_queueHandle;
 
-// Initialize DroneCAN library here
 static CanardInstance canard;
 static uint8_t memory_pool[1024];
+static struct uavcan_protocol_NodeStatus node_status;
 
 #define NODE_ID 97
 
@@ -24,6 +31,74 @@ static bool shouldAcceptTransfer(const CanardInstance *ins,
 
 static void onTransferReceived(CanardInstance *ins, CanardRxTransfer *transfer)
 {
+}
+
+static void send_NodeStatus(void)
+{
+    uint8_t buffer[UAVCAN_PROTOCOL_GETNODEINFO_RESPONSE_MAX_SIZE];
+
+    node_status.uptime_sec = micros64() / 1000000ULL;
+    node_status.health = UAVCAN_PROTOCOL_NODESTATUS_HEALTH_OK;
+    node_status.mode = UAVCAN_PROTOCOL_NODESTATUS_MODE_OPERATIONAL;
+    node_status.sub_mode = 0;
+    // put whatever you like in here for display in GUI
+    node_status.vendor_specific_status_code = 1234;
+
+    uint32_t len = uavcan_protocol_NodeStatus_encode(&node_status, buffer);
+
+    // we need a static variable for the transfer ID. This is
+    // incremeneted on each transfer, allowing for detection of packet
+    // loss
+    static uint8_t transfer_id;
+
+    canardBroadcast(&canard,
+                    UAVCAN_PROTOCOL_NODESTATUS_SIGNATURE,
+                    UAVCAN_PROTOCOL_NODESTATUS_ID,
+                    &transfer_id,
+                    CANARD_TRANSFER_PRIORITY_LOW,
+                    buffer,
+                    len);
+}
+
+static void process1HzTasks(uint64_t timestamp_usec)
+{
+    /*
+      Purge transfers that are no longer transmitted. This can free up some memory
+    */
+    canardCleanupStaleTransfers(&canard, timestamp_usec);
+
+    /*
+     Transmit the node status message
+     */
+    send_NodeStatus();
+}
+
+static void processTx(void)
+{
+    for (int i = 0; i < MAX_TX_FRAMES_PER_LOOP; i++)
+    {
+        const CanardCANFrame *txf = canardPeekTxQueue(&canard);
+        if (txf == NULL)
+            break;
+
+        CANFrame frame = {
+            .id = txf->id,
+            .dlc = txf->data_len,
+            .extended = (txf->id & CANARD_CAN_FRAME_EFF) != 0,
+            .rtr = (txf->id & CANARD_CAN_FRAME_RTR) != 0,
+        };
+
+        memcpy(frame.data, txf->data, frame.dlc);
+
+        osStatus_t status = osMessageQueuePut(can_tx_queueHandle, &frame, 0, 0);
+        if (status != osOK)
+        {
+            LOG_WARNING("Tx queue full, dropping CAN frame: %d\n", status);
+            break; // stop trying if the queue is full
+        }
+
+        canardPopTxQueue(&canard);
+    }
 }
 
 void StartDronecanTask(void *argument)
@@ -42,19 +117,30 @@ void StartDronecanTask(void *argument)
     CanardCANFrame rx_frame;
     osStatus_t status;
 
+    uint64_t next_1hz_service_at = micros64();
     /* Infinite loop */
     for (;;)
     {
-        // Wait for a message from the queue (blocks until message available)
-        status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, osWaitForever);
+        // Wait for a message, but only up to 100 ms so we can do periodic checks
+        status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, 100);
+        const uint64_t ts = micros64();
+
+        // Process incoming frame if available
         if (status == osOK)
         {
-            canardHandleRxFrame(&canard, &rx_frame, micros64());
+            canardHandleRxFrame(&canard, &rx_frame, ts);
         }
-        else
+        else if (status != osErrorTimeout)
         {
-            // Handle queue error if needed
             LOG_ERROR("DroneCAN RX Queue Error: %d\n", status);
         }
+
+        if (ts >= next_1hz_service_at)
+        {
+            next_1hz_service_at += 1000000ULL;
+            process1HzTasks(ts);
+        }
+
+        processTx();
     }
 }

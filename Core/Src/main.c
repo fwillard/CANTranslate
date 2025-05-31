@@ -64,6 +64,11 @@ int __io_putchar(int ch)
   return ch;
 }
 
+extern osThreadId_t dronecan_taskHandle;
+extern osThreadId_t cansimple_taskHandle;
+extern osThreadId_t can_tx_taskHandle;
+extern osThreadId_t logging_taskHandle;
+
 /* USER CODE END 0 */
 
 /**
