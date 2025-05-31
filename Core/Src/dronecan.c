@@ -7,6 +7,7 @@
 #include "time_utils.h"
 #include <dronecan_msgs.h>
 #include "can.h"
+#include "version.h"
 #include <string.h>
 
 #define MAX_TX_FRAMES_PER_LOOP 5 // tune as needed
@@ -20,19 +21,97 @@ static struct uavcan_protocol_NodeStatus node_status;
 
 #define NODE_ID 97
 
+// Gets a unique hardware ID for the MCU
+// This is specific to the STM32F103, which has a unique ID stored in the
+// system memory at address 0x1FFFF7E8. The unique ID is 96 bits long,
+// and we will pad it to 128 bits (16 bytes) by adding 4 zero bytes at the end.
+void get_unique_id(uint8_t unique_id[16])
+{
+    // memory location for STM32F103
+    const uint32_t *id_base = (const uint32_t *)0x1FFFF7E8;
+
+    // Copy the 96-bit ID
+    memcpy(unique_id, id_base, 12);
+
+    // Pad the remaining 4 bytes with zeros
+    memset(&unique_id[12], 0, 4);
+}
+
+static void handle_GetNodeInfo(CanardInstance *ins, CanardRxTransfer *transfer)
+{
+    LOG_DEBUG("Handling GetNodeInfo request from node %d\n", transfer->source_node_id);
+    uint8_t buffer[UAVCAN_PROTOCOL_GETNODEINFO_RESPONSE_MAX_SIZE];
+    struct uavcan_protocol_GetNodeInfoResponse pkt;
+
+    memset(&pkt, 0, sizeof(pkt));
+
+    node_status.uptime_sec = micros64() / 1000000ULL;
+    pkt.status = node_status;
+
+    pkt.software_version.major = PROJECT_VERSION_MAJOR;
+    pkt.software_version.minor = PROJECT_VERSION_MINOR;
+    pkt.software_version.optional_field_flags = UAVCAN_PROTOCOL_SOFTWAREVERSION_OPTIONAL_FIELD_FLAG_VCS_COMMIT;
+    pkt.software_version.vcs_commit = GIT_HASH;
+
+    pkt.hardware_version.major = 0;
+    pkt.hardware_version.minor = 1;
+    get_unique_id(pkt.hardware_version.unique_id);
+
+    strncpy((char *)pkt.name.data, "CANTranslate", sizeof(pkt.name.data));
+    pkt.name.len = strnlen((char *)pkt.name.data, sizeof(pkt.name.data));
+
+    uint16_t total_size = uavcan_protocol_GetNodeInfoResponse_encode(&pkt, buffer);
+
+    canardRequestOrRespond(ins,
+                           transfer->source_node_id,
+                           UAVCAN_PROTOCOL_GETNODEINFO_SIGNATURE,
+                           UAVCAN_PROTOCOL_GETNODEINFO_ID,
+                           &transfer->transfer_id,
+                           transfer->priority,
+                           CanardResponse,
+                           &buffer[0],
+                           total_size);
+}
+
 static bool shouldAcceptTransfer(const CanardInstance *ins,
                                  uint64_t *out_data_type_signature,
                                  uint16_t data_type_id,
                                  CanardTransferType transfer_type,
                                  uint8_t source_node_id)
 {
-    return true;
+    if (transfer_type == CanardTransferTypeRequest)
+    {
+        // check if we want to handle a specific service request
+        switch (data_type_id)
+        {
+        case UAVCAN_PROTOCOL_GETNODEINFO_ID:
+        {
+            *out_data_type_signature = UAVCAN_PROTOCOL_GETNODEINFO_REQUEST_SIGNATURE;
+            return true;
+        }
+        }
+    }
+    // we don't want any other messages
+    return false;
 }
 
 static void onTransferReceived(CanardInstance *ins, CanardRxTransfer *transfer)
 {
     LOG_DEBUG("Received transfer: ID=%d, Type=%d, Source=%d\n",
               transfer->data_type_id, transfer->transfer_type, transfer->source_node_id);
+    // switch on data type ID to pass to the right handler function
+    if (transfer->transfer_type == CanardTransferTypeRequest)
+    {
+        // check if we want to handle a specific service request
+        switch (transfer->data_type_id)
+        {
+        case UAVCAN_PROTOCOL_GETNODEINFO_ID:
+        {
+            handle_GetNodeInfo(ins, transfer);
+            break;
+        }
+        }
+    }
 }
 
 static void send_NodeStatus(void)
