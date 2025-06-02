@@ -1,4 +1,4 @@
-#include "time_utils.h"
+#include "utils.h"
 #include "cmsis_os.h"
 #include "stm32f1xx_hal.h"
 
@@ -15,4 +15,9 @@ uint64_t micros64()
 
     osMutexRelease(micros_mutexHandle);
     return timestamp;
+}
+
+uint32_t millis32()
+{
+    return micros64() / 1000;
 }

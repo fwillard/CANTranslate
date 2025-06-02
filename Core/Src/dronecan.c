@@ -4,7 +4,7 @@
 #include "cmsis_os.h"
 #include "logging.h"
 #include <stdio.h>
-#include "time_utils.h"
+#include "utils.h"
 #include <dronecan_msgs.h>
 #include "can.h"
 #include "version.h"
