@@ -255,7 +255,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the semaphores(s) */
   /* creation of can_tx_sem */
-  can_tx_semHandle = osSemaphoreNew(3, 3, &can_tx_sem_attributes);
+  can_tx_semHandle = osSemaphoreNew(1, 1, &can_tx_sem_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
