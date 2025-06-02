@@ -48,7 +48,7 @@ void MX_CAN_Init(void)
   /* USER CODE END CAN_Init 1 */
   hcan.Instance = CAN1;
   hcan.Init.Prescaler = 18;
-  hcan.Init.Mode = CAN_MODE_LOOPBACK;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
   hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
   hcan.Init.TimeSeg1 = CAN_BS1_4TQ;
   hcan.Init.TimeSeg2 = CAN_BS2_3TQ;
@@ -107,17 +107,18 @@ void MX_CAN_Init(void)
     Error_Handler();
   }
   /* USER CODE END CAN_Init 2 */
+
 }
 
-void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle)
+void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
 {
 
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if (canHandle->Instance == CAN1)
+  if(canHandle->Instance==CAN1)
   {
-    /* USER CODE BEGIN CAN1_MspInit 0 */
+  /* USER CODE BEGIN CAN1_MspInit 0 */
 
-    /* USER CODE END CAN1_MspInit 0 */
+  /* USER CODE END CAN1_MspInit 0 */
     /* CAN1 clock enable */
     __HAL_RCC_CAN1_CLK_ENABLE();
 
@@ -145,20 +146,20 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle)
     HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
     HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
-    /* USER CODE BEGIN CAN1_MspInit 1 */
+  /* USER CODE BEGIN CAN1_MspInit 1 */
 
-    /* USER CODE END CAN1_MspInit 1 */
+  /* USER CODE END CAN1_MspInit 1 */
   }
 }
 
-void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle)
+void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 {
 
-  if (canHandle->Instance == CAN1)
+  if(canHandle->Instance==CAN1)
   {
-    /* USER CODE BEGIN CAN1_MspDeInit 0 */
+  /* USER CODE BEGIN CAN1_MspDeInit 0 */
 
-    /* USER CODE END CAN1_MspDeInit 0 */
+  /* USER CODE END CAN1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_CAN1_CLK_DISABLE();
 
@@ -166,15 +167,15 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle)
     PB8     ------> CAN_RX
     PB9     ------> CAN_TX
     */
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8 | GPIO_PIN_9);
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8|GPIO_PIN_9);
 
     /* CAN1 interrupt Deinit */
     HAL_NVIC_DisableIRQ(USB_HP_CAN1_TX_IRQn);
     HAL_NVIC_DisableIRQ(USB_LP_CAN1_RX0_IRQn);
     HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
-    /* USER CODE BEGIN CAN1_MspDeInit 1 */
+  /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
-    /* USER CODE END CAN1_MspDeInit 1 */
+  /* USER CODE END CAN1_MspDeInit 1 */
   }
 }
 
@@ -193,7 +194,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
   }
   CanardCANFrame rx_frame;
 
-  rx_frame.id = rx_header.ExtId;
+  rx_frame.id = rx_header.ExtId | CANARD_CAN_FRAME_EFF;
   rx_frame.data_len = rx_header.DLC;
   memcpy(rx_frame.data, rx_data, rx_header.DLC);
   rx_frame.iface_id = 0; // Only one CAN interface
