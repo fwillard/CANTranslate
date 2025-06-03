@@ -14,7 +14,7 @@
 
 #define NODE_ID 0
 
-#define PREFERRED_NODE_ID 97
+#define PREFERRED_NODE_ID 70
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
 extern osMessageQueueId_t can_tx_queueHandle;
