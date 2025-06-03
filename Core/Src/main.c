@@ -22,6 +22,7 @@
 #include "can.h"
 #include "tim.h"
 #include "gpio.h"
+#include "utils.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -103,7 +104,9 @@ int main(void)
   MX_CAN_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  // init random number generator
+  uint32_t seed = (SysTick->VAL ^ HAL_GetTick() ^ (uint32_t)&seed) | 1;
+  random_seed(seed);
   /* USER CODE END 2 */
 
   /* Init scheduler */

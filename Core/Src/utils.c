@@ -6,6 +6,8 @@ volatile uint32_t timer_overflows = 0;
 extern osMutexId_t micros_mutexHandle;
 extern TIM_HandleTypeDef htim2;
 
+uint32_t state = 0;
+
 uint64_t micros64()
 {
     osMutexAcquire(micros_mutexHandle, osWaitForever);
@@ -20,4 +22,17 @@ uint64_t micros64()
 uint32_t millis32()
 {
     return micros64() / 1000;
+}
+
+uint32_t random()
+{
+    state ^= state << 13;
+    state ^= state >> 17;
+    state ^= state << 5;
+    return state;
+}
+
+void random_seed(uint32_t seed)
+{
+    state = seed;
 }
