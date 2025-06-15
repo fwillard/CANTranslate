@@ -10,7 +10,7 @@
 #include "version.h"
 #include <string.h>
 
-#define MAX_TX_FRAMES_PER_LOOP 5 // tune as needed
+#define MAX_TX_FRAMES_PER_LOOP 200 // tune as needed
 
 #define NODE_ID 0
 
@@ -18,10 +18,13 @@
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
 extern osMessageQueueId_t can_tx_queueHandle;
+extern osSemaphoreId_t can_tx_semHandle;
 
 static CanardInstance canard;
-static uint8_t memory_pool[1024];
+static uint8_t memory_pool[2048];
+
 static struct uavcan_protocol_NodeStatus node_status;
+static struct uavcan_equipment_esc_Status esc_status[4];
 
 /*
   data for dynamic node allocation process
@@ -177,15 +180,18 @@ static void handle_GetNodeInfo(CanardInstance *ins, CanardRxTransfer *transfer)
 
     uint16_t total_size = uavcan_protocol_GetNodeInfoResponse_encode(&pkt, buffer);
 
-    canardRequestOrRespond(ins,
-                           transfer->source_node_id,
-                           UAVCAN_PROTOCOL_GETNODEINFO_SIGNATURE,
-                           UAVCAN_PROTOCOL_GETNODEINFO_ID,
-                           &transfer->transfer_id,
-                           transfer->priority,
-                           CanardResponse,
-                           &buffer[0],
-                           total_size);
+    if (canardRequestOrRespond(ins,
+                               transfer->source_node_id,
+                               UAVCAN_PROTOCOL_GETNODEINFO_SIGNATURE,
+                               UAVCAN_PROTOCOL_GETNODEINFO_ID,
+                               &transfer->transfer_id,
+                               transfer->priority,
+                               CanardResponse,
+                               &buffer[0],
+                               total_size) < 0)
+    {
+        LOG_ERROR("Failed to send GetNodeInfo response\n");
+    }
 }
 
 static bool shouldAcceptTransfer(const CanardInstance *ins,
@@ -290,32 +296,71 @@ static void process1HzTasks(uint64_t timestamp_usec)
     send_NodeStatus();
 }
 
+void update_fake_esc_data(uint8_t i)
+{
+
+    esc_status[i].esc_index = i;
+    esc_status[i].rpm = rand_float_range(-5000.0f, 5000.0f); // Bidirectional motor RPM
+    esc_status[i].voltage = rand_float_range(22.0f, 25.2f);  // Simulate 6S LiPo voltage
+    esc_status[i].current = rand_float_range(0.0f, 60.0f);   // Up to 60A draw
+}
+
+static void send_ESC_status(void)
+{
+    for (uint8_t i = 0; i < 4; i++)
+    {
+
+        struct uavcan_equipment_esc_Status pkt;
+        memset(&pkt, 0, sizeof(pkt));
+        uint8_t buffer[UAVCAN_EQUIPMENT_ESC_STATUS_MAX_SIZE];
+
+        // fake status data for now
+        // TODO: replace with real data
+        update_fake_esc_data(i);
+
+        pkt = esc_status[i];
+
+        uint32_t len = uavcan_equipment_esc_Status_encode(&pkt, buffer);
+
+        // we need a static variable for the transfer ID. This is
+        // incremeneted on each transfer, allowing for detection of packet
+        // loss
+        static uint8_t transfer_id;
+
+        canardBroadcast(&canard,
+                        UAVCAN_EQUIPMENT_ESC_STATUS_SIGNATURE,
+                        UAVCAN_EQUIPMENT_ESC_STATUS_ID,
+                        &transfer_id,
+                        CANARD_TRANSFER_PRIORITY_LOW,
+                        buffer,
+                        len);
+    }
+}
+
 static void processTx(void)
 {
-    for (int i = 0; i < MAX_TX_FRAMES_PER_LOOP; i++)
+
+    const CanardCANFrame *txf = canardPeekTxQueue(&canard);
+    if (txf == NULL)
+        return;
+
+    CANFrame frame = {
+        .id = txf->id,
+        .dlc = txf->data_len,
+        .extended = (txf->id & CANARD_CAN_FRAME_EFF) != 0,
+        .rtr = (txf->id & CANARD_CAN_FRAME_RTR) != 0,
+    };
+
+    memcpy(frame.data, txf->data, frame.dlc);
+
+    osStatus_t status = osMessageQueuePut(can_tx_queueHandle, &frame, 0, 0);
+    if (status != osOK)
     {
-        const CanardCANFrame *txf = canardPeekTxQueue(&canard);
-        if (txf == NULL)
-            break;
-
-        CANFrame frame = {
-            .id = txf->id,
-            .dlc = txf->data_len,
-            .extended = (txf->id & CANARD_CAN_FRAME_EFF) != 0,
-            .rtr = (txf->id & CANARD_CAN_FRAME_RTR) != 0,
-        };
-
-        memcpy(frame.data, txf->data, frame.dlc);
-
-        osStatus_t status = osMessageQueuePut(can_tx_queueHandle, &frame, 0, 0);
-        if (status != osOK)
-        {
-            LOG_WARNING("Tx queue full, dropping CAN frame: %d\n", status);
-            break; // stop trying if the queue is full
-        }
-
-        canardPopTxQueue(&canard);
+        // LOG_WARNING("Tx queue full, dropping CAN frame: %d\n", status);
+        return; // stop trying if the queue is full
     }
+
+    canardPopTxQueue(&canard);
 }
 
 void StartDronecanTask(void *argument)
@@ -346,17 +391,16 @@ void StartDronecanTask(void *argument)
     /* Infinite loop */
     for (;;)
     {
-        processTx();
+        processTx(); // drain all pending frames
 
         // Wait for a message, but only up to 100 ms so we can do periodic checks
-        status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, 100);
+        status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, 1);
         const uint64_t ts = micros64();
 
         // Process incoming frame if available
         if (status == osOK)
         {
-            LOG_DEBUG("Received CAN frame: ID=0x%03X, DLC=%d\n",
-                      rx_frame.id, rx_frame.data_len);
+            // LOG_DEBUG("Received CAN frame: ID=0x%03X, DLC=%d\n", rx_frame.id, rx_frame.data_len);
             canardHandleRxFrame(&canard, &rx_frame, ts);
         }
         else if (status != osErrorTimeout)
@@ -379,6 +423,12 @@ void StartDronecanTask(void *argument)
         {
             next_1hz_service_at += 1000000ULL;
             process1HzTasks(ts);
+        }
+
+        if (ts >= next_50hz_service_at)
+        {
+            next_50hz_service_at += 1000000ULL / 10U;
+            send_ESC_status();
         }
     }
 }

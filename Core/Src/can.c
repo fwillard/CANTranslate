@@ -47,11 +47,11 @@ void MX_CAN_Init(void)
 
   /* USER CODE END CAN_Init 1 */
   hcan.Instance = CAN1;
-  hcan.Init.Prescaler = 18;
+  hcan.Init.Prescaler = 2;
   hcan.Init.Mode = CAN_MODE_NORMAL;
   hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan.Init.TimeSeg1 = CAN_BS1_4TQ;
-  hcan.Init.TimeSeg2 = CAN_BS2_3TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_15TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
   hcan.Init.TimeTriggeredMode = DISABLE;
   hcan.Init.AutoBusOff = DISABLE;
   hcan.Init.AutoWakeUp = DISABLE;
@@ -259,7 +259,8 @@ void StartCANTxTask(void *argument)
   /* Infinite loop */
   for (;;)
   {
-
+    uint32_t count_before = osMessageQueueGetCount(can_tx_queueHandle);
+    LOG_DEBUG("Queue count before get: %d\n", count_before);
     if (osMessageQueueGet(can_tx_queueHandle, &frame, NULL, osWaitForever) == osOK)
     {
       // Acquire semaphore: wait until at least one mailbox is free
@@ -276,7 +277,12 @@ void StartCANTxTask(void *argument)
         }
         else
         {
-          LOG_DEBUG("CAN Tx Success: ID=0x%08X\n", tx_header.ExtId);
+          // LOG_DEBUG("CAN Tx Success: ID=0x%08X\n", tx_header.ExtId);
+          if (osMessageQueueGetCount(can_tx_queueHandle) > 0)
+          {
+            // Log the number of frames left in the queue
+            LOG_DEBUG("CAN Tx Queue Count: %d\n", osMessageQueueGetCount(can_tx_queueHandle));
+          }
         }
       }
       else
