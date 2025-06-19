@@ -33,7 +33,7 @@
   "config.gpio10_mode": 17,
   "config.gpio11_mode": 17,
   "config.gpio12_mode": 17,
-  "config.gpio8_pwm_mapping.endpoint": "config.gpio8_pwm_mapping.endpoint",
+  "config.gpio8_pwm_mapping.endpoint": "axis0.controller.input_vel",
   "config.gpio8_pwm_mapping.min": -3.0,
   "config.gpio8_pwm_mapping.max": 3.0,
   "config.gpio1_analog_mapping.endpoint": null,
