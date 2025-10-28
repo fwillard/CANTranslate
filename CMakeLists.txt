@@ -27,24 +27,20 @@ include("cmake/gcc-arm-none-eabi.cmake")
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
+# Enable CMake support for ASM and C languages
 
 # Core project settings
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
 execute_process(
-    COMMAND git rev-parse --short HEAD
+    COMMAND git rev-parse --short=8 HEAD
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_HASH_HEX
+    OUTPUT_VARIABLE GIT_HASH
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-execute_process(
-    COMMAND bash -c "echo 'ibase=16; ${GIT_HASH_HEX}' | bc"
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_HASH_INT
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+math(EXPR GIT_HASH_INT "0x${GIT_HASH}")
 
 set(PROJECT_VERSION "1.0.0")
 
@@ -59,7 +55,6 @@ configure_file(
     @ONLY
 )
 
-# Enable CMake support for ASM and C languages
 enable_language(C ASM)
 
 
@@ -71,7 +66,7 @@ add_subdirectory(cmake/stm32cubemx)
 
 # Add libcanard
 add_library(libcanard STATIC
-    external/libcanard/canard.c
+    Middlewares/Third_Party/libcanard/canard.c
 )
 
 # Link directories setup
@@ -80,23 +75,25 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 file(GLOB DRONECAN_SOURCES 
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/src/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSDLC/src/*.c
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     ${DRONECAN_SOURCES}
-    Core/Src/cantranslate.c
-    Core/Src/queue.c
-    Core/Src/timer.c
+    Core/Src/can.c
+    Core/Src/dronecan.c
+    Core/Src/cansimple.c
+    Core/Src/logging.c
+    Core/Src/utils.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/libcanard
-    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSLDC/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/libcanard
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/DSDLC/include
     ${CMAKE_BINARY_DIR}
 )
 
@@ -108,6 +105,6 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-    libcanard
     # Add user defined libraries
+    libcanard
 )
