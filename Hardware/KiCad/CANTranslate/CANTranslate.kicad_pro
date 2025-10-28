@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.6
         }
       },
       "diff_pair_dimensions": [
@@ -60,33 +60,45 @@
         {
           "gap": 0.5,
           "via_gap": 0.5,
-          "width": 0.2
+          "width": 0.2042
         },
         {
-          "gap": 0.3,
+          "gap": 0.2,
           "via_gap": 0.5,
-          "width": 0.33
+          "width": 0.284
         }
       ],
       "drc_exclusions": [
         [
-          "lib_footprint_mismatch|187000000|70000000|66e1e8d0-9585-4e75-bc5b-2769f99a8535|00000000-0000-0000-0000-000000000000",
+          "hole_clearance|231495000|51700000|82fd5e7c-2983-4e85-8189-4628ad7bb1fc|4f4e37ab-30dc-4531-8667-883729c177bf",
           ""
         ],
         [
-          "lib_footprint_mismatch|187000000|99000000|82c5937f-9d25-4b82-81cf-ff3e4d7a4a90|00000000-0000-0000-0000-000000000000",
+          "hole_clearance|231495000|51700000|82fd5e7c-2983-4e85-8189-4628ad7bb1fc|d4fb8fc7-e3cb-4506-abfb-1ab8c85b1d7e",
           ""
         ],
         [
-          "lib_footprint_mismatch|208000000|67615000|303a6461-1edc-479a-ae4e-bbb423585039|00000000-0000-0000-0000-000000000000",
+          "hole_clearance|231495000|57800000|089642d8-f7c2-45c3-9f48-7c3c7a98c480|2ff54113-01ff-4a9c-a22b-91b68d311c4f",
           ""
         ],
         [
-          "lib_footprint_mismatch|227635000|82320000|a7dfc48d-c064-49b6-891e-9da55c129aa9|00000000-0000-0000-0000-000000000000",
+          "hole_clearance|231495000|57800000|089642d8-f7c2-45c3-9f48-7c3c7a98c480|d17dbc05-0437-4568-8bf2-e0f85fdc42a4",
           ""
         ],
         [
-          "lib_footprint_mismatch|228500000|75000000|6940e20b-ab10-4bcb-a901-fa3afd5ee814|00000000-0000-0000-0000-000000000000",
+          "lib_footprint_mismatch|186000000|38654000|f385f632-fe30-4775-bb7f-978a91518b5b|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "lib_footprint_mismatch|186800000|69304000|6912a8ce-5582-4256-8ad9-96b2b41b09ab|00000000-0000-0000-0000-000000000000",
+          ""
+        ],
+        [
+          "starved_thermal|231070000|57950000|8998deec-1ef8-45df-b5cf-bac469b0bf00|2ff54113-01ff-4a9c-a22b-91b68d311c4f|F.Cu",
+          ""
+        ],
+        [
+          "starved_thermal|231070000|57950000|8998deec-1ef8-45df-b5cf-bac469b0bf00|d17dbc05-0437-4568-8bf2-e0f85fdc42a4|F.Cu",
           ""
         ]
       ],
@@ -131,7 +143,7 @@
         "padstack": "warning",
         "pth_inside_courtyard": "ignore",
         "shorting_items": "error",
-        "silk_edge_clearance": "warning",
+        "silk_edge_clearance": "ignore",
         "silk_over_copper": "warning",
         "silk_overlap": "warning",
         "skew_out_of_range": "error",
@@ -530,6 +542,8 @@
         "wire_width": 6
       },
       {
+        "diff_pair_gap": 0.5,
+        "diff_pair_width": 0.2042,
         "name": "CAN",
         "pcb_color": "rgb(7, 255, 21)",
         "priority": 4,
@@ -560,6 +574,8 @@
         "schematic_color": "rgba(0, 0, 0, 0.000)"
       },
       {
+        "diff_pair_gap": 0.2,
+        "diff_pair_width": 0.284,
         "name": "USB",
         "pcb_color": "rgb(20, 247, 255)",
         "priority": 3,
@@ -727,7 +743,7 @@
           "group_by": false,
           "label": "LCSC",
           "name": "LCSC",
-          "show": false
+          "show": true
         }
       ],
       "filter_string": "",
