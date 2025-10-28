@@ -34,7 +34,7 @@ endif()
 
 # Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/opt/stm32cubeclt/GNU-tools-for-STM32/bin/arm-none-eabi-objdump")
+  set(CMAKE_OBJDUMP "/usr/sbin/arm-none-eabi-objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

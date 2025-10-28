@@ -3,7 +3,15 @@
         "cantranslate.h": "c",
         "stm32f1xx_hal.h": "c",
         "main.h": "c",
-        "stm32f1xx_hal_def.h": "c"
+        "stm32f1xx_hal_def.h": "c",
+        "task.h": "c",
+        "stdio.h": "c",
+        "canard.h": "c",
+        "freertos.h": "c",
+        "cmsis_os.h": "c",
+        "logging.h": "c",
+        "version.h": "c",
+        "dronecan_msgs.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }
