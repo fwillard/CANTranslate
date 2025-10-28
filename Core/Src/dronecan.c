@@ -12,7 +12,7 @@
 
 #define MAX_TX_FRAMES_PER_LOOP 200 // tune as needed
 
-#define NODE_ID 0
+#define NODE_ID 70
 
 #define PREFERRED_NODE_ID 70
 
@@ -425,10 +425,10 @@ void StartDronecanTask(void *argument)
             process1HzTasks(ts);
         }
 
-        if (ts >= next_50hz_service_at)
-        {
-            next_50hz_service_at += 1000000ULL / 10U;
-            send_ESC_status();
-        }
+        // if (ts >= next_50hz_service_at)
+        // {
+        //     next_50hz_service_at += 1000000ULL / 10U;
+        //     send_ESC_status();
+        // }
     }
 }

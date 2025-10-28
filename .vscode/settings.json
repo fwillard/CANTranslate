@@ -10,7 +10,8 @@
         "freertos.h": "c",
         "cmsis_os.h": "c",
         "logging.h": "c",
-        "version.h": "c"
+        "version.h": "c",
+        "dronecan_msgs.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }
