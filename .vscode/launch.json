@@ -5,109 +5,37 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": false
-        },
-        {
-            "name": "Build & Debug Microcontroller - OpenOCD",
-            "cwd": "${workspaceFolder}",
-            "type": "cortex-debug",
-            "executable": "${command:cmake.launchTargetPath}",
-            "request": "launch",
-            "servertype": "openocd",
-            "device": "STM32F103C6",
-            "configFiles": [
-                "interface/stlink.cfg",
-                "target/stm32f1x.cfg"
-            ],
-            "runToEntryPoint": "main",
-            "swoConfig": {
-                "enabled": true,
-                "cpuFrequency": 72000000,
-                "swoFrequency": 2000000,
-                "source": "probe",
-                "decoders": [
-                    {
-                        "type": "console",
-                        "port": 0,
-                        "label": "ITM",
-                        "encoding": "ascii"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Build & Debug Microcontroller - ST-Link",
-            "cwd": "${workspaceFolder}",
-            "type": "cortex-debug",
-            "executable": "${command:cmake.launchTargetPath}",
-            // Let CMake extension decide executable: "${command:cmake.launchTargetPath}"
-            // Or fixed file path: "${workspaceFolder}/path/to/filename.elf"
-            "request": "launch",
-            "servertype": "stlink",
-            "device": "STM32F103C6Tx", //MCU used
-            "interface": "swd",
-            "serialNumber": "", //Set ST-Link ID if you use multiple at the same time
-            "runToEntryPoint": "main",
-            "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32F103.svd",
-            "v1": false, //Change it depending on ST Link version
-            "serverpath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-            "stm32cubeprogrammer": "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
-            "stlinkPath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-            "armToolchainPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin",
-            "gdbPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
-            "serverArgs": [
-                "-m",
-                "0",
-            ],
-            "swoConfig": {
-                "enabled": true,
-                "cpuFrequency": 72000000, // Typical STM32F103 frequency - adjust if yours is different
-                "swoFrequency": 2000000,
-                "source": "probe",
-                "decoders": [
-                    {
-                        "type": "console",
-                        "port": 0,
-                        "label": "ITM",
-                        "encoding": "ascii"
-                    }
-                ]
-            }
-            //"preLaunchTask": "Build + Flash"
-            /* If you use external loader, add additional arguments */
-            //"serverArgs": ["--extload", "path/to/ext/loader.stldr"],
-        },
-        {
-            "name": "Attach to Microcontroller - ST-Link",
-            "cwd": "${workspaceFolder}",
-            "type": "cortex-debug",
-            "executable": "${command:cmake.launchTargetPath}",
-            // Let CMake extension decide executable: "${command:cmake.launchTargetPath}"
-            // Or fixed file path: "${workspaceFolder}/path/to/filename.elf"
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
             "request": "attach",
-            "servertype": "stlink",
-            "device": "STM32F103C6Tx", //MCU used
-            "interface": "swd",
-            "serialNumber": "", //Set ST-Link ID if you use multiple at the same time
-            "runToEntryPoint": "main",
-            "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32F103.svd",
-            "v1": false, //Change it depending on ST Link version
-            "serverpath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-            "stm32cubeprogrammer": "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
-            "stlinkPath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-            "armToolchainPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin",
-            "gdbPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
-            "serverArgs": [
-                "-m",
-                "0",
-            ],
-            /* If you use external loader, add additional arguments */
-            //"serverArgs": ["--extload", "path/to/ext/loader.stldr"],
+            "program": "enter program name, for example ${workspaceFolder}/a.out",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "type": "stlinkgdbtarget",
+            "request": "launch",
+            "name": "STM32Cube: STM32 Launch ST-Link GDB Server",
+            "origin": "snippet",
+            "cwd": "${workspaceFolder}",
+            "preBuild": "${command:st-stm32-ide-debug-launch.build}",
+            "runEntry": "main",
+            "imagesAndSymbols": [
+                {
+                    "imageFileName": "${command:st-stm32-ide-debug-launch.get-projects-binary-from-context1}"
+                }
+            ]
         }
     ]
 }

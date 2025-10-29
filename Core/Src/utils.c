@@ -1,6 +1,6 @@
 #include "utils.h"
 #include "cmsis_os.h"
-#include "stm32f1xx_hal.h"
+#include "stm32f2xx_hal.h"
 
 volatile uint32_t timer_overflows = 0;
 extern osMutexId_t micros_mutexHandle;
