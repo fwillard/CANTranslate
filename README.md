@@ -9,14 +9,14 @@ CANTranslate is a bridge solution that enables seamless communication ArduPilot 
 ## Features
 
 - Bidirectional translation between DroneCAN and CANSimple protocols
-- Custom STM32F303 Based Hardware
+- Custom STM32F205 Based Hardware
 - Support for critical message types from both protocols
 
 ## Hardware
 
 CANTranslate runs on a custom PCB based on:
 
-- STM32F303CCT6 microcontroller
+- STM32F205RGT6 microcontroller
 - SN65HVD230 CAN Transciever
 
 ## Software
