@@ -21,15 +21,15 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-#include <string.h>
-#include "logging.h"
-#include "cmsis_os.h"
 #include "canard.h"
+#include "cmsis_os.h"
+#include "logging.h"
 #include <stdio.h>
+#include <string.h>
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
 extern osMessageQueueId_t cansimple_rx_queueHandle;
-extern osMessageQueueId_t can_tx_queueHandle;
+extern osMessageQueueId_t dronecan_tx_queueHandle;
 extern osSemaphoreId_t can_tx_semHandle;
 /* USER CODE END 0 */
 
@@ -64,6 +64,34 @@ void MX_CAN1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN CAN1_Init 2 */
+  CAN_FilterTypeDef can1Filter;
+
+  can1Filter.FilterBank = 0;                     // filter bank number
+  can1Filter.FilterMode = CAN_FILTERMODE_IDMASK; // mask mode
+  can1Filter.FilterScale = CAN_FILTERSCALE_32BIT;
+  can1Filter.FilterIdHigh = 0x0000; // accept all IDs
+  can1Filter.FilterIdLow = 0x0000;
+  can1Filter.FilterMaskIdHigh = 0x0000; // mask all bits
+  can1Filter.FilterMaskIdLow = 0x0000;
+  can1Filter.FilterFIFOAssignment = CAN_FILTER_FIFO0; // send messages to FIFO0
+  can1Filter.FilterActivation = ENABLE;
+  can1Filter.SlaveStartFilterBank = 14;
+
+  if (HAL_CAN_ConfigFilter(&hcan1, &can1Filter) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Start the CAN controller
+  if (HAL_CAN_Start(&hcan1) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Enable receive interrupts
+  if (HAL_CAN_ActivateNotification(
+          &hcan1, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING |
+                      CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK) {
+    Error_Handler();
+  }
 
   /* USER CODE END CAN1_Init 2 */
 
@@ -96,6 +124,34 @@ void MX_CAN2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN CAN2_Init 2 */
+  CAN_FilterTypeDef can2Filter;
+
+  can2Filter.FilterBank = 14; // filter bank number (0…13 on STM32F1/F4)
+  can2Filter.FilterMode = CAN_FILTERMODE_IDMASK; // mask mode
+  can2Filter.FilterScale = CAN_FILTERSCALE_32BIT;
+  can2Filter.FilterIdHigh = 0x0000; // accept all IDs
+  can2Filter.FilterIdLow = 0x0000;
+  can2Filter.FilterMaskIdHigh = 0x0000; // mask all bits
+  can2Filter.FilterMaskIdLow = 0x0000;
+  can2Filter.FilterFIFOAssignment = CAN_FILTER_FIFO1; // send messages to
+  can2Filter.FilterActivation = ENABLE;
+
+  if (HAL_CAN_ConfigFilter(&hcan2, &can2Filter) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Start the CAN controller
+
+  if (HAL_CAN_Start(&hcan2) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Enable receive interrupts
+  if (HAL_CAN_ActivateNotification(
+          &hcan2, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING |
+                      CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK) {
+    Error_Handler();
+  }
 
   /* USER CODE END CAN2_Init 2 */
 
@@ -130,8 +186,12 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     GPIO_InitStruct.Alternate = GPIO_AF9_CAN1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    /* CAN1 interrupt Init */
+    HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+    HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspInit 1 */
-
   /* USER CODE END CAN1_MspInit 1 */
   }
   else if(canHandle->Instance==CAN2)
@@ -158,8 +218,12 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     GPIO_InitStruct.Alternate = GPIO_AF9_CAN2;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    /* CAN2 interrupt Init */
+    HAL_NVIC_SetPriority(CAN2_RX0_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(CAN2_RX0_IRQn);
+    HAL_NVIC_SetPriority(CAN2_RX1_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(CAN2_RX1_IRQn);
   /* USER CODE BEGIN CAN2_MspInit 1 */
-
   /* USER CODE END CAN2_MspInit 1 */
   }
 }
@@ -184,6 +248,9 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8|GPIO_PIN_9);
 
+    /* CAN1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(CAN1_RX0_IRQn);
+    HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
   /* USER CODE END CAN1_MspDeInit 1 */
@@ -206,6 +273,9 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12|GPIO_PIN_13);
 
+    /* CAN2 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(CAN2_RX0_IRQn);
+    HAL_NVIC_DisableIRQ(CAN2_RX1_IRQn);
   /* USER CODE BEGIN CAN2_MspDeInit 1 */
 
   /* USER CODE END CAN2_MspDeInit 1 */
@@ -213,124 +283,18 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-  // Parse header, dispatch to dronecan_rx_queue
-  CAN_RxHeaderTypeDef rx_header;
-  uint8_t rx_data[8];
-
-  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK)
-  {
-    // drop frame and return
-    return;
-  }
-  CanardCANFrame rx_frame;
-
-  rx_frame.id = rx_header.ExtId | CANARD_CAN_FRAME_EFF;
-  rx_frame.data_len = rx_header.DLC;
-  memcpy(rx_frame.data, rx_data, rx_header.DLC);
-  rx_frame.iface_id = 0; // Only one CAN interface
-
-  osMessageQueuePut(dronecan_rx_queueHandle, &rx_frame, 0, 0);
-}
-
-void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-  // Parse header, dispatch to cansimple_rx_queue
-  CAN_RxHeaderTypeDef rx_header;
-  uint8_t rx_data[8];
-
-  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK)
-  {
-    // drop frame and return
-    return;
-  }
-
-  CANFrame rx_frame;
-  rx_frame.id = rx_header.StdId;
-  rx_frame.dlc = rx_header.DLC;
-  rx_frame.extended = (rx_header.IDE == CAN_ID_EXT); // Should never be true for FIFO1
-  rx_frame.rtr = rx_header.RTR;
-  memcpy(rx_frame.data, rx_data, rx_header.DLC);
-
-  osMessageQueuePut(cansimple_rx_queueHandle, &rx_frame, 0, 0);
-}
-
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
-{
-  osSemaphoreRelease(can_tx_semHandle);
-}
-
-void build_tx_header(const CANFrame *frame, CAN_TxHeaderTypeDef *header)
-{
+void build_tx_header(const CANFrame *frame, CAN_TxHeaderTypeDef *header) {
   header->IDE = frame->extended ? CAN_ID_EXT : CAN_ID_STD;
   header->RTR = frame->rtr ? CAN_RTR_REMOTE : CAN_RTR_DATA;
   header->DLC = frame->dlc;
   header->TransmitGlobalTime = DISABLE;
 
-  if (frame->extended)
-  {
+  if (frame->extended) {
     header->ExtId = frame->id;
     header->StdId = 0;
-  }
-  else
-  {
+  } else {
     header->StdId = frame->id;
     header->ExtId = 0;
   }
 }
-
-void StartCANTxTask(void *argument)
-{
-  /* USER CODE BEGIN StartCANTxTask */
-  (void)argument; // Prevent unused argument warning
-
-  CANFrame frame;
-  CAN_TxHeaderTypeDef tx_header;
-  uint32_t tx_mailbox;
-
-  /* Infinite loop */
-  for (;;)
-  {
-    // uint32_t count_before = osMessageQueueGetCount(can_tx_queueHandle);
-    // LOG_DEBUG("Queue count before get: %d\n", count_before);
-    // if (osMessageQueueGet(can_tx_queueHandle, &frame, NULL, osWaitForever) == osOK)
-    // {
-    //   // Acquire semaphore: wait until at least one mailbox is free
-    //   if (osSemaphoreAcquire(can_tx_semHandle, osWaitForever) == osOK)
-    //   {
-    //     build_tx_header(&frame, &tx_header);
-
-    //     if (HAL_CAN_AddTxMessage(&hcan, &tx_header, frame.data, &tx_mailbox) != HAL_OK)
-    //     {
-    //       LOG_ERROR("CAN Tx Error\n");
-
-    //       // Release semaphore to avoid deadlock (mailbox wasn't taken)
-    //       osSemaphoreRelease(can_tx_semHandle);
-    //     }
-    //     else
-    //     {
-    //       // LOG_DEBUG("CAN Tx Success: ID=0x%08X\n", tx_header.ExtId);
-    //       if (osMessageQueueGetCount(can_tx_queueHandle) > 0)
-    //       {
-    //         // Log the number of frames left in the queue
-    //         LOG_DEBUG("CAN Tx Queue Count: %d\n", osMessageQueueGetCount(can_tx_queueHandle));
-    //       }
-    //     }
-    //   }
-    //   else
-    //   {
-    //     LOG_ERROR("CAN Tx Semaphore Error\n");
-    //   }
-    // }
-    // else
-    // {
-    //   LOG_ERROR("CAN Tx Queue Error\n");
-    // }
-  }
-
-  /* USER CODE END StartCANTxTask */
-}
-
 /* USER CODE END 1 */

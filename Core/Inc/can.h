@@ -37,14 +37,13 @@ extern CAN_HandleTypeDef hcan1;
 extern CAN_HandleTypeDef hcan2;
 
 /* USER CODE BEGIN Private defines */
-  typedef struct
-  {
-    uint32_t id;
-    uint8_t dlc;
-    uint8_t data[8];
-    uint8_t extended; // 1 = extended ID, 0 = standard
-    uint8_t rtr;      // 1 = remote frame, 0 = data frame
-  } CANFrame;
+typedef struct {
+  uint32_t id;
+  uint8_t dlc;
+  uint8_t data[8];
+  uint8_t extended; // 1 = extended ID, 0 = standard
+  uint8_t rtr;      // 1 = remote frame, 0 = data frame
+} CANFrame;
 
 /* USER CODE END Private defines */
 
@@ -52,6 +51,7 @@ void MX_CAN1_Init(void);
 void MX_CAN2_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void build_tx_header(const CANFrame *frame, CAN_TxHeaderTypeDef *header);
 
 /* USER CODE END Prototypes */
 
