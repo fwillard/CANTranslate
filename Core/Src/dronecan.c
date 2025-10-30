@@ -60,7 +60,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 // and we will pad it to 128 bits (16 bytes) by adding 4 zero bytes at the end.
 void get_unique_id(uint8_t unique_id[16]) {
   // memory location for STM32F103
-  const uint32_t *id_base = (const uint32_t *)0x1FFFF7E8;
+  const uint32_t *id_base = (const uint32_t *)0x1FFF7A10;
 
   // Copy the 96-bit ID
   memcpy(unique_id, id_base, 12);
