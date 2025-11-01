@@ -1,0 +1,1330 @@
+### Message from 10 to All  ts_mono=7934.548231  ts_real=1762018670.592076
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.555877  ts_real=1762018670.599721
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.568277  ts_real=1762018670.612121
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.588331  ts_real=1762018670.632176
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.605967  ts_real=1762018670.649811
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.608440  ts_real=1762018670.652285
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.628301  ts_real=1762018670.672146
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.648307  ts_real=1762018670.692153
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.655547  ts_real=1762018670.699392
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.668508  ts_real=1762018670.712353
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.688480  ts_real=1762018670.732326
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.705835  ts_real=1762018670.749681
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.708387  ts_real=1762018670.752231
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.728354  ts_real=1762018670.772200
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.748354  ts_real=1762018670.792200
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.755974  ts_real=1762018670.799819
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.768381  ts_real=1762018670.812226
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.788277  ts_real=1762018670.832122
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.806077  ts_real=1762018670.849922
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.808271  ts_real=1762018670.852115
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.828353  ts_real=1762018670.872198
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.848403  ts_real=1762018670.892248
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.855461  ts_real=1762018670.899306
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.868323  ts_real=1762018670.912168
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.888274  ts_real=1762018670.932119
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.905578  ts_real=1762018670.949424
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.908285  ts_real=1762018670.952129
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.924963  ts_real=1762018670.968809
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7934.924963  ts_real=1762018670.968809
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7934.928345  ts_real=1762018670.972190
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.948331  ts_real=1762018670.992178
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.956019  ts_real=1762018670.999864
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7934.968368  ts_real=1762018671.012213
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7934.988275  ts_real=1762018671.032121
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.005843  ts_real=1762018671.049688
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.008272  ts_real=1762018671.052117
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.008534  ts_real=1762018671.052378
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 12
+### Message from 10 to All  ts_mono=7935.028250  ts_real=1762018671.072095
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.048343  ts_real=1762018671.092188
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.056070  ts_real=1762018671.099915
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.068376  ts_real=1762018671.112221
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.088406  ts_real=1762018671.132252
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.106275  ts_real=1762018671.150120
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.108504  ts_real=1762018671.152349
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.128361  ts_real=1762018671.172206
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.148407  ts_real=1762018671.192252
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.155820  ts_real=1762018671.199665
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.168456  ts_real=1762018671.212302
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.188287  ts_real=1762018671.232133
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.205946  ts_real=1762018671.249791
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.208301  ts_real=1762018671.252145
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.228298  ts_real=1762018671.272143
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.248314  ts_real=1762018671.292160
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.255487  ts_real=1762018671.299333
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.268313  ts_real=1762018671.312158
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.288369  ts_real=1762018671.332215
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.305656  ts_real=1762018671.349500
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.308322  ts_real=1762018671.352166
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.328413  ts_real=1762018671.372258
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.348300  ts_real=1762018671.392146
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.355769  ts_real=1762018671.399615
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.368255  ts_real=1762018671.412099
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.388263  ts_real=1762018671.432107
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.405755  ts_real=1762018671.449600
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.408246  ts_real=1762018671.452091
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.424927  ts_real=1762018671.468772
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7935.424927  ts_real=1762018671.468772
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7935.425299  ts_real=1762018671.469143
+uptime_sec: 1024
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7935.428540  ts_real=1762018671.472384
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.448279  ts_real=1762018671.492125
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.455461  ts_real=1762018671.499306
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.468273  ts_real=1762018671.512119
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.488355  ts_real=1762018671.532201
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.488952  ts_real=1762018671.532796
+payload: [0]
+### Message from 10 to All  ts_mono=7935.506182  ts_real=1762018671.550028
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.508323  ts_real=1762018671.552167
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.508489  ts_real=1762018671.552333
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 0
+### Message from 10 to All  ts_mono=7935.528324  ts_real=1762018671.572168
+cmd: [0, 0, 0, 0]
+### Message from 10 to 100  ts_mono=7935.533788  ts_real=1762018671.577632
+{}
+### Message from 10 to All  ts_mono=7935.548274  ts_real=1762018671.592119
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.555844  ts_real=1762018671.599688
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.568271  ts_real=1762018671.612115
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.588290  ts_real=1762018671.632136
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.606065  ts_real=1762018671.649910
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.608262  ts_real=1762018671.652106
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.628239  ts_real=1762018671.672085
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.648334  ts_real=1762018671.692179
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.655535  ts_real=1762018671.699379
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.668427  ts_real=1762018671.712272
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.688527  ts_real=1762018671.732373
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.705787  ts_real=1762018671.749632
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.708320  ts_real=1762018671.752165
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.728280  ts_real=1762018671.772125
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.748353  ts_real=1762018671.792198
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.756037  ts_real=1762018671.799883
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.768301  ts_real=1762018671.812147
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.788339  ts_real=1762018671.832184
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.805909  ts_real=1762018671.849754
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.808491  ts_real=1762018671.852336
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.828381  ts_real=1762018671.872226
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.848376  ts_real=1762018671.892221
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.855358  ts_real=1762018671.899204
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.868406  ts_real=1762018671.912251
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.888407  ts_real=1762018671.932253
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.905535  ts_real=1762018671.949380
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.908276  ts_real=1762018671.952120
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.924744  ts_real=1762018671.968589
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7935.924744  ts_real=1762018671.968589
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7935.928256  ts_real=1762018671.972100
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.948346  ts_real=1762018671.992192
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.956024  ts_real=1762018671.999869
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7935.968362  ts_real=1762018672.012207
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7935.988310  ts_real=1762018672.032155
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.005824  ts_real=1762018672.049669
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.008348  ts_real=1762018672.052193
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.008573  ts_real=1762018672.052417
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 12
+### Message from 10 to All  ts_mono=7936.028450  ts_real=1762018672.072295
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.048391  ts_real=1762018672.092236
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.056075  ts_real=1762018672.099919
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.068434  ts_real=1762018672.112280
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.088294  ts_real=1762018672.132140
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.106036  ts_real=1762018672.149881
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.108366  ts_real=1762018672.152211
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.128346  ts_real=1762018672.172192
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.148329  ts_real=1762018672.192174
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.155478  ts_real=1762018672.199323
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.168307  ts_real=1762018672.212151
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.188333  ts_real=1762018672.232179
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.205854  ts_real=1762018672.249699
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.208420  ts_real=1762018672.252265
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.228302  ts_real=1762018672.272147
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.248364  ts_real=1762018672.292209
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.255885  ts_real=1762018672.299729
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.268348  ts_real=1762018672.312192
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.288382  ts_real=1762018672.332226
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.306069  ts_real=1762018672.349914
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.308406  ts_real=1762018672.352252
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.328493  ts_real=1762018672.372339
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.348457  ts_real=1762018672.392302
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.355696  ts_real=1762018672.399541
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.368448  ts_real=1762018672.412294
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.388421  ts_real=1762018672.432266
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.405779  ts_real=1762018672.449625
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.408346  ts_real=1762018672.452190
+cmd: [0, 0, 0, 0]
+### Message from 10 to 100  ts_mono=7936.415882  ts_real=1762018672.459726
+{}
+### Message from 10 to All  ts_mono=7936.424895  ts_real=1762018672.468739
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7936.424895  ts_real=1762018672.468739
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7936.425286  ts_real=1762018672.469131
+uptime_sec: 1025
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7936.428299  ts_real=1762018672.472144
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.448437  ts_real=1762018672.492283
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.456028  ts_real=1762018672.499873
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.468351  ts_real=1762018672.512195
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.488574  ts_real=1762018672.532420
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.489104  ts_real=1762018672.532949
+payload: [0]
+### Message from 10 to All  ts_mono=7936.506121  ts_real=1762018672.549967
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.508384  ts_real=1762018672.552229
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.508384  ts_real=1762018672.552229
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 0
+### Message from 10 to All  ts_mono=7936.528325  ts_real=1762018672.572171
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.548282  ts_real=1762018672.592128
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.555958  ts_real=1762018672.599802
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.568341  ts_real=1762018672.612186
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.588293  ts_real=1762018672.632138
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.606074  ts_real=1762018672.649919
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.608260  ts_real=1762018672.652105
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.628337  ts_real=1762018672.672182
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.648435  ts_real=1762018672.692280
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.655559  ts_real=1762018672.699404
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.668430  ts_real=1762018672.712276
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.688455  ts_real=1762018672.732300
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.705894  ts_real=1762018672.749740
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.708481  ts_real=1762018672.752326
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.728360  ts_real=1762018672.772205
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.748350  ts_real=1762018672.792196
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.756010  ts_real=1762018672.799857
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.768398  ts_real=1762018672.812244
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.788449  ts_real=1762018672.832294
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.806196  ts_real=1762018672.850042
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.808398  ts_real=1762018672.852243
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.828457  ts_real=1762018672.872303
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.848374  ts_real=1762018672.892220
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.855565  ts_real=1762018672.899409
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.868304  ts_real=1762018672.912148
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.888464  ts_real=1762018672.932309
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.905683  ts_real=1762018672.949528
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.908496  ts_real=1762018672.952341
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.924858  ts_real=1762018672.968704
+status: 255 # FULLY_ARMED
+### Message from 10 to All  ts_mono=7936.924858  ts_real=1762018672.968704
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7936.928442  ts_real=1762018672.972287
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.948393  ts_real=1762018672.992238
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.955962  ts_real=1762018672.999808
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7936.968402  ts_real=1762018673.012247
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7936.988433  ts_real=1762018673.032278
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.005923  ts_real=1762018673.049769
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.008431  ts_real=1762018673.052276
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.008728  ts_real=1762018673.052572
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 12
+### Message from 10 to All  ts_mono=7937.028414  ts_real=1762018673.072261
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.048334  ts_real=1762018673.092179
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.055924  ts_real=1762018673.099768
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.068338  ts_real=1762018673.112183
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.088403  ts_real=1762018673.132247
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.106140  ts_real=1762018673.149986
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.108410  ts_real=1762018673.152255
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.128455  ts_real=1762018673.172301
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.128455  ts_real=1762018673.172301
+frequency: 392.0000
+duration: 2.8008
+### Message from 10 to All  ts_mono=7937.148441  ts_real=1762018673.192288
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.155812  ts_real=1762018673.199657
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.168472  ts_real=1762018673.212318
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.188503  ts_real=1762018673.232349
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.206174  ts_real=1762018673.250020
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.208363  ts_real=1762018673.252208
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.228370  ts_real=1762018673.272216
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.248365  ts_real=1762018673.292211
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.255453  ts_real=1762018673.299297
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.268324  ts_real=1762018673.312170
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.288380  ts_real=1762018673.332226
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.305691  ts_real=1762018673.349538
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.308335  ts_real=1762018673.352179
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.328447  ts_real=1762018673.372293
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.348415  ts_real=1762018673.392261
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.355968  ts_real=1762018673.399813
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.368458  ts_real=1762018673.412304
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.388483  ts_real=1762018673.432328
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.406152  ts_real=1762018673.449997
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.408341  ts_real=1762018673.452186
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.424773  ts_real=1762018673.468618
+status: 255 # FULLY_ARMED
+### Message from 10 to All  ts_mono=7937.424773  ts_real=1762018673.468618
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7937.424773  ts_real=1762018673.468618
+uptime_sec: 1026
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7937.428415  ts_real=1762018673.472260
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.448366  ts_real=1762018673.492212
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.455551  ts_real=1762018673.499396
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.468400  ts_real=1762018673.512245
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.488508  ts_real=1762018673.532354
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.506059  ts_real=1762018673.549904
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.508465  ts_real=1762018673.552309
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.528524  ts_real=1762018673.572370
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.548320  ts_real=1762018673.592165
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.555924  ts_real=1762018673.599769
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.568327  ts_real=1762018673.612176
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.588393  ts_real=1762018673.632238
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.606094  ts_real=1762018673.649938
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.608314  ts_real=1762018673.652158
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.628365  ts_real=1762018673.672209
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.648398  ts_real=1762018673.692244
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.655572  ts_real=1762018673.699417
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.668418  ts_real=1762018673.712262
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.688433  ts_real=1762018673.732278
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.705710  ts_real=1762018673.749555
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.708476  ts_real=1762018673.752321
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.728419  ts_real=1762018673.772264
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.748511  ts_real=1762018673.792356
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.756148  ts_real=1762018673.799992
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.768506  ts_real=1762018673.812351
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.788521  ts_real=1762018673.832367
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.806130  ts_real=1762018673.849974
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.808482  ts_real=1762018673.852327
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.828506  ts_real=1762018673.872350
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.848456  ts_real=1762018673.892300
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.855588  ts_real=1762018673.899433
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.868386  ts_real=1762018673.912230
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.888458  ts_real=1762018673.932302
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.905741  ts_real=1762018673.949585
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.908362  ts_real=1762018673.952207
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.924983  ts_real=1762018673.968827
+status: 255 # FULLY_ARMED
+### Message from 10 to All  ts_mono=7937.924983  ts_real=1762018673.968827
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7937.928452  ts_real=1762018673.972296
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.948454  ts_real=1762018673.992300
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.955791  ts_real=1762018673.999635
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7937.968394  ts_real=1762018674.012239
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7937.988481  ts_real=1762018674.032326
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.005795  ts_real=1762018674.049641
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.008419  ts_real=1762018674.052264
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.028420  ts_real=1762018674.072266
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.048457  ts_real=1762018674.092303
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.056231  ts_real=1762018674.100075
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.068411  ts_real=1762018674.112257
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.088425  ts_real=1762018674.132271
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.106190  ts_real=1762018674.150036
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.108356  ts_real=1762018674.152200
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.128407  ts_real=1762018674.172253
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.148506  ts_real=1762018674.192352
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.155666  ts_real=1762018674.199511
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.168530  ts_real=1762018674.212376
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.188518  ts_real=1762018674.232364
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.205850  ts_real=1762018674.249696
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.208417  ts_real=1762018674.252263
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.228457  ts_real=1762018674.272304
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.248458  ts_real=1762018674.292303
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.256146  ts_real=1762018674.299990
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.268332  ts_real=1762018674.312178
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.288371  ts_real=1762018674.332217
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.306068  ts_real=1762018674.349914
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.308356  ts_real=1762018674.352200
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.328410  ts_real=1762018674.372256
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.348403  ts_real=1762018674.392248
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.355845  ts_real=1762018674.399689
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.368349  ts_real=1762018674.412194
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.388503  ts_real=1762018674.432348
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.406034  ts_real=1762018674.449881
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.408462  ts_real=1762018674.452307
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.424695  ts_real=1762018674.468541
+status: 255 # FULLY_ARMED
+### Message from 10 to All  ts_mono=7938.424695  ts_real=1762018674.468541
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7938.424949  ts_real=1762018674.468793
+uptime_sec: 1027
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7938.428423  ts_real=1762018674.472268
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.448344  ts_real=1762018674.492189
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.455482  ts_real=1762018674.499326
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.468331  ts_real=1762018674.512175
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.488522  ts_real=1762018674.532367
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.506054  ts_real=1762018674.549898
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.508399  ts_real=1762018674.552246
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.528441  ts_real=1762018674.572288
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.548574  ts_real=1762018674.592419
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.555994  ts_real=1762018674.599839
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.568386  ts_real=1762018674.612231
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.588504  ts_real=1762018674.632349
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.606160  ts_real=1762018674.650005
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.608449  ts_real=1762018674.652293
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.628451  ts_real=1762018674.672295
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.648389  ts_real=1762018674.692233
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.655635  ts_real=1762018674.699479
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.668315  ts_real=1762018674.712159
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.688362  ts_real=1762018674.732207
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.705659  ts_real=1762018674.749503
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.708473  ts_real=1762018674.752317
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.728438  ts_real=1762018674.772282
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.748455  ts_real=1762018674.792300
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.756062  ts_real=1762018674.799908
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.768451  ts_real=1762018674.812297
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.788471  ts_real=1762018674.832316
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.806189  ts_real=1762018674.850035
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.808373  ts_real=1762018674.852218
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.828336  ts_real=1762018674.872180
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.848345  ts_real=1762018674.892189
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.855416  ts_real=1762018674.899261
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.868407  ts_real=1762018674.912252
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.888565  ts_real=1762018674.932411
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.905687  ts_real=1762018674.949533
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.908497  ts_real=1762018674.952342
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.924884  ts_real=1762018674.968729
+status: 255 # FULLY_ARMED
+### Message from 10 to All  ts_mono=7938.924884  ts_real=1762018674.968729
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7938.928442  ts_real=1762018674.972287
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.948414  ts_real=1762018674.992260
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.955963  ts_real=1762018674.999808
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7938.968392  ts_real=1762018675.012239
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7938.988521  ts_real=1762018675.032367
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.005806  ts_real=1762018675.049653
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.008416  ts_real=1762018675.052261
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.028426  ts_real=1762018675.072271
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.048435  ts_real=1762018675.092281
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.049477  ts_real=1762018675.093322
+payload: [0]
+### Message from 10 to All  ts_mono=7939.056321  ts_real=1762018675.100165
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.068430  ts_real=1762018675.112275
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.088451  ts_real=1762018675.132296
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.107366  ts_real=1762018675.151212
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 30 # FLYING | PREARM_GPS | FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.108375  ts_real=1762018675.152220
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.128385  ts_real=1762018675.172230
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.128808  ts_real=1762018675.172652
+frequency: 1047.0000
+duration: 0.2625
+### Message from 10 to All  ts_mono=7939.148404  ts_real=1762018675.192249
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.157221  ts_real=1762018675.201066
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.168382  ts_real=1762018675.212227
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.188423  ts_real=1762018675.232269
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.207160  ts_real=1762018675.251007
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.208475  ts_real=1762018675.252320
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.228487  ts_real=1762018675.272332
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.248460  ts_real=1762018675.292306
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.256599  ts_real=1762018675.300444
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.268444  ts_real=1762018675.312289
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.288444  ts_real=1762018675.332289
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.306883  ts_real=1762018675.350729
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.308392  ts_real=1762018675.352236
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.328391  ts_real=1762018675.372236
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.348447  ts_real=1762018675.392292
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.357150  ts_real=1762018675.400995
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.368509  ts_real=1762018675.412354
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.388494  ts_real=1762018675.432339
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.407455  ts_real=1762018675.451300
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.408578  ts_real=1762018675.452423
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.424843  ts_real=1762018675.468687
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7939.424843  ts_real=1762018675.468687
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7939.425060  ts_real=1762018675.468904
+uptime_sec: 1028
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7939.428555  ts_real=1762018675.472399
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.448450  ts_real=1762018675.492296
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.457025  ts_real=1762018675.500870
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.468384  ts_real=1762018675.512229
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.488468  ts_real=1762018675.532314
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.507339  ts_real=1762018675.551185
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.508556  ts_real=1762018675.552401
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.508782  ts_real=1762018675.552626
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 0
+### Message from 10 to All  ts_mono=7939.528456  ts_real=1762018675.572300
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.548392  ts_real=1762018675.592238
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.557405  ts_real=1762018675.601250
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.568487  ts_real=1762018675.612332
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.588620  ts_real=1762018675.632465
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.608141  ts_real=1762018675.651986
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.608699  ts_real=1762018675.652544
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.628483  ts_real=1762018675.672328
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.648424  ts_real=1762018675.692269
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.658172  ts_real=1762018675.702017
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.668408  ts_real=1762018675.712252
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.688451  ts_real=1762018675.732295
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.707518  ts_real=1762018675.751362
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.708390  ts_real=1762018675.752234
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.728384  ts_real=1762018675.772228
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.748426  ts_real=1762018675.792270
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.758317  ts_real=1762018675.802161
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.768411  ts_real=1762018675.812257
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.788373  ts_real=1762018675.832218
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.808372  ts_real=1762018675.852217
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.808879  ts_real=1762018675.852723
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.828506  ts_real=1762018675.872353
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.848418  ts_real=1762018675.892263
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.859370  ts_real=1762018675.903214
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.868384  ts_real=1762018675.912229
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.888371  ts_real=1762018675.932216
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.908495  ts_real=1762018675.952340
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.910123  ts_real=1762018675.953967
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.925062  ts_real=1762018675.968906
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7939.925062  ts_real=1762018675.968906
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7939.928399  ts_real=1762018675.972244
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.948392  ts_real=1762018675.992237
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.960035  ts_real=1762018676.003880
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7939.968424  ts_real=1762018676.012269
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7939.988443  ts_real=1762018676.032289
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.008526  ts_real=1762018676.052372
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.008891  ts_real=1762018676.052734
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 12
+### Message from 10 to All  ts_mono=7940.010023  ts_real=1762018676.053868
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.028480  ts_real=1762018676.072325
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.048423  ts_real=1762018676.092268
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.049246  ts_real=1762018676.093090
+payload: [0]
+### Message from 10 to All  ts_mono=7940.059578  ts_real=1762018676.103423
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.068390  ts_real=1762018676.112236
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.088425  ts_real=1762018676.132270
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.108412  ts_real=1762018676.152258
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.110109  ts_real=1762018676.153953
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.128475  ts_real=1762018676.172319
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.148415  ts_real=1762018676.192259
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.159490  ts_real=1762018676.203336
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.168479  ts_real=1762018676.212325
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.188493  ts_real=1762018676.232339
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.208427  ts_real=1762018676.252272
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.210053  ts_real=1762018676.253897
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.228422  ts_real=1762018676.272267
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.248399  ts_real=1762018676.292244
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.260455  ts_real=1762018676.304300
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.268370  ts_real=1762018676.312214
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.288449  ts_real=1762018676.332294
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.308439  ts_real=1762018676.352284
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.311190  ts_real=1762018676.355034
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.328430  ts_real=1762018676.372275
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.348423  ts_real=1762018676.392268
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.361314  ts_real=1762018676.405159
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.368446  ts_real=1762018676.412291
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.388497  ts_real=1762018676.432343
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.408526  ts_real=1762018676.452370
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.411428  ts_real=1762018676.455273
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.425151  ts_real=1762018676.468996
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7940.425151  ts_real=1762018676.468996
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7940.425467  ts_real=1762018676.469311
+uptime_sec: 1029
+health: 0 # OK
+mode: 0 # OPERATIONAL
+sub_mode: 0
+vendor_specific_status_code: 0
+### Message from 10 to All  ts_mono=7940.428352  ts_real=1762018676.472197
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.448416  ts_real=1762018676.492261
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.461759  ts_real=1762018676.505603
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.468396  ts_real=1762018676.512241
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.488442  ts_real=1762018676.532287
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.508412  ts_real=1762018676.552256
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.508727  ts_real=1762018676.552571
+commands: 
+  - 
+    light_id: 0
+    color: 
+      red: 0
+      green: 0
+      blue: 0
+### Message from 10 to All  ts_mono=7940.512370  ts_real=1762018676.556215
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.528513  ts_real=1762018676.572359
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.548511  ts_real=1762018676.592357
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.562833  ts_real=1762018676.606678
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.568497  ts_real=1762018676.612344
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.588441  ts_real=1762018676.632288
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.608473  ts_real=1762018676.652319
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.612423  ts_real=1762018676.656268
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.628385  ts_real=1762018676.672229
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.648419  ts_real=1762018676.692265
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.662601  ts_real=1762018676.706446
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.668464  ts_real=1762018676.712309
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.688577  ts_real=1762018676.732423
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.708565  ts_real=1762018676.752411
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.712365  ts_real=1762018676.756211
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.728486  ts_real=1762018676.772332
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.748432  ts_real=1762018676.792278
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.762910  ts_real=1762018676.806755
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.768319  ts_real=1762018676.812163
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.788500  ts_real=1762018676.832344
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.808506  ts_real=1762018676.852351
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.813499  ts_real=1762018676.857344
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.828563  ts_real=1762018676.872409
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.848456  ts_real=1762018676.892302
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.863966  ts_real=1762018676.907811
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.868529  ts_real=1762018676.912373
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.888532  ts_real=1762018676.932377
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.908546  ts_real=1762018676.952391
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.913521  ts_real=1762018676.957365
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.924953  ts_real=1762018676.968799
+status: 0 # DISARMED
+### Message from 10 to All  ts_mono=7940.924953  ts_real=1762018676.968799
+status: 255 # SAFETY_OFF
+### Message from 10 to All  ts_mono=7940.928455  ts_real=1762018676.972301
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.948477  ts_real=1762018676.992322
+cmd: [0, 0, 0, 0]
+### Message from 10 to All  ts_mono=7940.964481  ts_real=1762018677.008326
+aux_data_type: 0
+aux_data: [100, 175]
+vehicle_state: 24 # FAILSAFE_BATT | GPS_GLITCH
+### Message from 10 to All  ts_mono=7940.968402  ts_real=1762018677.012247
+cmd: [0, 0, 0, 0]

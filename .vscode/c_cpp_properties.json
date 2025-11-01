@@ -4,8 +4,7 @@
             "name": "STM32",
             "configurationProvider": "ms-vscode.cmake-tools",
             "intelliSenseMode": "gcc-arm",
-            "compileCommands": "${workspaceFolder}/build/Debug/compile_commands.json",
-            "compilerPath": "/home/finn/st/stm32cubeclt_1.19.0/GNU-tools-for-STM32/bin/arm-none-eabi-gcc"
+            "compileCommands": "${workspaceFolder}/build/Debug/compile_commands.json"
         }
     ],
     "version": 4

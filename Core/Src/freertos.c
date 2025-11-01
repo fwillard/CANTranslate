@@ -76,7 +76,7 @@ osThreadId_t dronecanTxTaskHandle;
 const osThreadAttr_t dronecanTxTask_attributes = {
   .name = "dronecanTxTask",
   .stack_size = 1024 * 4,
-  .priority = (osPriority_t) osPriorityAboveNormal,
+  .priority = (osPriority_t) osPriorityHigh,
 };
 /* Definitions for loggingTask */
 osThreadId_t loggingTaskHandle;
@@ -84,6 +84,13 @@ const osThreadAttr_t loggingTask_attributes = {
   .name = "loggingTask",
   .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for cansimpleTxTask */
+osThreadId_t cansimpleTxTaskHandle;
+const osThreadAttr_t cansimpleTxTask_attributes = {
+  .name = "cansimpleTxTask",
+  .stack_size = 1024 * 4,
+  .priority = (osPriority_t) osPriorityHigh,
 };
 /* Definitions for dronecan_tx_queue */
 osMessageQueueId_t dronecan_tx_queueHandle;
@@ -105,6 +112,11 @@ osMessageQueueId_t log_queueHandle;
 const osMessageQueueAttr_t log_queue_attributes = {
   .name = "log_queue"
 };
+/* Definitions for cansimple_tx_queue */
+osMessageQueueId_t cansimple_tx_queueHandle;
+const osMessageQueueAttr_t cansimple_tx_queue_attributes = {
+  .name = "cansimple_tx_queue"
+};
 /* Definitions for micros_mutex */
 osMutexId_t micros_mutexHandle;
 const osMutexAttr_t micros_mutex_attributes = {
@@ -114,6 +126,11 @@ const osMutexAttr_t micros_mutex_attributes = {
 osSemaphoreId_t dronecan_tx_semaphoreHandle;
 const osSemaphoreAttr_t dronecan_tx_semaphore_attributes = {
   .name = "dronecan_tx_semaphore"
+};
+/* Definitions for cansimple_tx_semaphore */
+osSemaphoreId_t cansimple_tx_semaphoreHandle;
+const osSemaphoreAttr_t cansimple_tx_semaphore_attributes = {
+  .name = "cansimple_tx_semaphore"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -126,12 +143,14 @@ extern void StartDronecanTask(void *argument);
 extern void StartCanSimpleTask(void *argument);
 extern void StartDronecanTxTask(void *argument);
 extern void StartLoggingTask(void *argument);
+extern void StartCanSimpleTxTask(void *argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName);
+void vApplicationMallocFailedHook(void);
 
 /* USER CODE BEGIN 4 */
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName) {
@@ -143,6 +162,25 @@ void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName) {
     ;
 }
 /* USER CODE END 4 */
+
+/* USER CODE BEGIN 5 */
+void vApplicationMallocFailedHook(void) {
+  /* vApplicationMallocFailedHook() will only be called if
+  configUSE_MALLOC_FAILED_HOOK is set to 1 in FreeRTOSConfig.h. It is a hook
+  function that will get called if a call to pvPortMalloc() fails.
+  pvPortMalloc() is called internally by the kernel whenever a task, queue,
+  timer or semaphore is created. It is also called by various parts of the
+  demo application. If heap_1.c or heap_2.c are used, then the size of the
+  heap available to pvPortMalloc() is defined by configTOTAL_HEAP_SIZE in
+  FreeRTOSConfig.h, and the xPortGetFreeHeapSize() API function can be used
+  to query the size of free heap space that remains (although it does not
+  provide information on how the remaining heap might be fragmented). */
+  printf("Malloc failed! Out of heap memory!\n");
+  taskENTER_CRITICAL();
+  while (1)
+    ;
+}
+/* USER CODE END 5 */
 
 /**
   * @brief  FreeRTOS initialization
@@ -165,6 +203,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of dronecan_tx_semaphore */
   dronecan_tx_semaphoreHandle = osSemaphoreNew(3, 3, &dronecan_tx_semaphore_attributes);
 
+  /* creation of cansimple_tx_semaphore */
+  cansimple_tx_semaphoreHandle = osSemaphoreNew(3, 3, &cansimple_tx_semaphore_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -186,6 +227,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of log_queue */
   log_queueHandle = osMessageQueueNew (32, sizeof(log_message_t), &log_queue_attributes);
 
+  /* creation of cansimple_tx_queue */
+  cansimple_tx_queueHandle = osMessageQueueNew (16, sizeof(CANFrame), &cansimple_tx_queue_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -205,6 +249,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of loggingTask */
   loggingTaskHandle = osThreadNew(StartLoggingTask, NULL, &loggingTask_attributes);
+
+  /* creation of cansimpleTxTask */
+  cansimpleTxTaskHandle = osThreadNew(StartCanSimpleTxTask, NULL, &cansimpleTxTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */

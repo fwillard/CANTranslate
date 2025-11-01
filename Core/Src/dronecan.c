@@ -1,17 +1,21 @@
 
 #include "dronecan.h"
+#include "ardupilot.indication.SafetyState.h"
 #include "can.h"
 #include "canard.h"
 #include "cmsis_os.h"
 #include "logging.h"
 #include "projdefs.h"
+#include "uavcan.equipment.safety.ArmingStatus.h"
 #include "utils.h"
 #include "version.h"
+#include "cansimple.h"
 #include <dronecan_msgs.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
-#define NODE_ID 0
+#define NODE_ID 70
 
 #define PREFERRED_NODE_ID 70
 
@@ -24,6 +28,8 @@ static uint8_t memory_pool[2048];
 
 static struct uavcan_protocol_NodeStatus node_status;
 static struct uavcan_equipment_esc_Status esc_status[4];
+
+static uint8_t arming_state = 0;
 
 /*
   data for dynamic node allocation process
@@ -42,6 +48,7 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
   if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO1, &rx_header, rx_data) != HAL_OK) {
     // drop frame and return
+    LOG_ERROR("HAL_CAN_GetRxMessage failed\n");
     return;
   }
   CanardCANFrame rx_frame;
@@ -184,7 +191,6 @@ static void handle_GetNodeInfo(CanardInstance *ins,
   pkt.software_version.minor = PROJECT_VERSION_MINOR;
   pkt.software_version.optional_field_flags =
       UAVCAN_PROTOCOL_SOFTWAREVERSION_OPTIONAL_FIELD_FLAG_VCS_COMMIT;
-  pkt.software_version.vcs_commit = GIT_HASH;
 
   pkt.hardware_version.major = 0;
   pkt.hardware_version.minor = 1;
@@ -202,6 +208,29 @@ static void handle_GetNodeInfo(CanardInstance *ins,
           transfer->priority, CanardResponse, &buffer[0], total_size) < 0) {
     LOG_ERROR("Failed to send GetNodeInfo response\n");
   }
+}
+
+static void handle_ArmingStatus(CanardInstance *ins,
+                                CanardRxTransfer *transfer) {
+  LOG_DEBUG("Handling ArmingStatus message from node %d\n",
+            transfer->source_node_id);
+  struct uavcan_equipment_safety_ArmingStatus msg;
+  uavcan_equipment_safety_ArmingStatus_decode(transfer, &msg);
+
+  if(msg.status != arming_state) {
+    arming_state = msg.status;
+    if(arming_state == UAVCAN_EQUIPMENT_SAFETY_ARMINGSTATUS_STATUS_FULLY_ARMED) {
+      LOG_INFO("System ARMED!\n");
+      cansimple_set_axis_state(arming_state);
+    } else if(arming_state == UAVCAN_EQUIPMENT_SAFETY_ARMINGSTATUS_STATUS_DISARMED) {
+      LOG_INFO("System DISARMED!\n");
+      cansimple_set_axis_state(arming_state);
+    } else {
+      LOG_INFO("System in UNKNOWN arming state!\n");
+    }
+  }
+
+  LOG_DEBUG("Arming status: %d\n", arming_state);
 }
 
 static bool shouldAcceptTransfer(const CanardInstance *ins,
@@ -225,11 +254,22 @@ static bool shouldAcceptTransfer(const CanardInstance *ins,
           UAVCAN_PROTOCOL_DYNAMIC_NODE_ID_ALLOCATION_SIGNATURE;
       return true;
     }
+    case ARDUPILOT_INDICATION_NOTIFYSTATE_ID: {
+      *out_data_type_signature = ARDUPILOT_INDICATION_NOTIFYSTATE_SIGNATURE;
+      return true;
+    }
+    case ARDUPILOT_INDICATION_SAFETYSTATE_ID: {
+      *out_data_type_signature = ARDUPILOT_INDICATION_SAFETYSTATE_SIGNATURE;
+      return true;
+    }
+    case UAVCAN_EQUIPMENT_SAFETY_ARMINGSTATUS_ID: {
+      *out_data_type_signature = UAVCAN_EQUIPMENT_SAFETY_ARMINGSTATUS_SIGNATURE;
+      return true;
+    }
     }
   }
   return false;
 }
-
 static void onTransferReceived(CanardInstance *ins,
                                CanardRxTransfer *transfer) {
   LOG_DEBUG("Received transfer: ID=%d, Type=%d, Source=%d\n",
@@ -250,6 +290,16 @@ static void onTransferReceived(CanardInstance *ins,
     switch (transfer->data_type_id) {
     case UAVCAN_PROTOCOL_DYNAMIC_NODE_ID_ALLOCATION_ID: {
       handle_DNA_Allocation(ins, transfer);
+      break;
+    }
+    case ARDUPILOT_INDICATION_NOTIFYSTATE_ID: {
+      break;
+    }
+    case ARDUPILOT_INDICATION_SAFETYSTATE_ID: {
+      break;
+    }
+    case UAVCAN_EQUIPMENT_SAFETY_ARMINGSTATUS_ID: {
+      handle_ArmingStatus(ins, transfer);
       break;
     }
     }
@@ -282,7 +332,8 @@ static void send_NodeStatus(void) {
 
 static void process1HzTasks(uint64_t timestamp_usec) {
   /*
-    Purge transfers that are no longer transmitted. This can free up some memory
+    Purge transfers that are no longer transmitted. This can free up some
+    memory
   */
   canardCleanupStaleTransfers(&canard, timestamp_usec);
 
@@ -422,7 +473,7 @@ void StartDronecanTxTask(void *argument) {
                           osWaitForever) == osOK) {
       build_tx_header(&frame, &tx_header);
 
-      osSemaphoreAcquire(dronecan_tx_semaphoreHandle, 10);
+      osSemaphoreAcquire(dronecan_tx_semaphoreHandle, osWaitForever);
       HAL_StatusTypeDef status =
           HAL_CAN_AddTxMessage(&hcan2, &tx_header, frame.data, &tx_mailbox);
 

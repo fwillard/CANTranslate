@@ -32,13 +32,15 @@ extern osMessageQueueId_t dronecan_rx_queueHandle;
 extern osMessageQueueId_t cansimple_rx_queueHandle;
 extern osMessageQueueId_t dronecan_tx_queueHandle;
 extern osSemaphoreId_t dronecan_tx_semaphoreHandle;
+extern osSemaphoreId_t cansimple_tx_semaphoreHandle;
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
 CAN_HandleTypeDef hcan2;
 
 /* CAN1 init function */
-void MX_CAN1_Init(void) {
+void MX_CAN1_Init(void)
+{
 
   /* USER CODE BEGIN CAN1_Init 0 */
 
@@ -59,7 +61,8 @@ void MX_CAN1_Init(void) {
   hcan1.Init.AutoRetransmission = DISABLE;
   hcan1.Init.ReceiveFifoLocked = DISABLE;
   hcan1.Init.TransmitFifoPriority = DISABLE;
-  if (HAL_CAN_Init(&hcan1) != HAL_OK) {
+  if (HAL_CAN_Init(&hcan1) != HAL_OK)
+  {
     Error_Handler();
   }
   /* USER CODE BEGIN CAN1_Init 2 */
@@ -93,9 +96,11 @@ void MX_CAN1_Init(void) {
   }
 
   /* USER CODE END CAN1_Init 2 */
+
 }
 /* CAN2 init function */
-void MX_CAN2_Init(void) {
+void MX_CAN2_Init(void)
+{
 
   /* USER CODE BEGIN CAN2_Init 0 */
 
@@ -116,7 +121,8 @@ void MX_CAN2_Init(void) {
   hcan2.Init.AutoRetransmission = DISABLE;
   hcan2.Init.ReceiveFifoLocked = DISABLE;
   hcan2.Init.TransmitFifoPriority = DISABLE;
-  if (HAL_CAN_Init(&hcan2) != HAL_OK) {
+  if (HAL_CAN_Init(&hcan2) != HAL_OK)
+  {
     Error_Handler();
   }
   /* USER CODE BEGIN CAN2_Init 2 */
@@ -150,20 +156,23 @@ void MX_CAN2_Init(void) {
   }
 
   /* USER CODE END CAN2_Init 2 */
+
 }
 
-static uint32_t HAL_RCC_CAN1_CLK_ENABLED = 0;
+static uint32_t HAL_RCC_CAN1_CLK_ENABLED=0;
 
-void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
+void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
+{
 
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if (canHandle->Instance == CAN1) {
-    /* USER CODE BEGIN CAN1_MspInit 0 */
+  if(canHandle->Instance==CAN1)
+  {
+  /* USER CODE BEGIN CAN1_MspInit 0 */
 
-    /* USER CODE END CAN1_MspInit 0 */
+  /* USER CODE END CAN1_MspInit 0 */
     /* CAN1 clock enable */
     HAL_RCC_CAN1_CLK_ENABLED++;
-    if (HAL_RCC_CAN1_CLK_ENABLED == 1) {
+    if(HAL_RCC_CAN1_CLK_ENABLED==1){
       __HAL_RCC_CAN1_CLK_ENABLE();
     }
 
@@ -172,7 +181,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
     PB8     ------> CAN1_RX
     PB9     ------> CAN1_TX
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -186,16 +195,18 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
     HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
     HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
-    /* USER CODE BEGIN CAN1_MspInit 1 */
-    /* USER CODE END CAN1_MspInit 1 */
-  } else if (canHandle->Instance == CAN2) {
-    /* USER CODE BEGIN CAN2_MspInit 0 */
+  /* USER CODE BEGIN CAN1_MspInit 1 */
+  /* USER CODE END CAN1_MspInit 1 */
+  }
+  else if(canHandle->Instance==CAN2)
+  {
+  /* USER CODE BEGIN CAN2_MspInit 0 */
 
-    /* USER CODE END CAN2_MspInit 0 */
+  /* USER CODE END CAN2_MspInit 0 */
     /* CAN2 clock enable */
     __HAL_RCC_CAN2_CLK_ENABLE();
     HAL_RCC_CAN1_CLK_ENABLED++;
-    if (HAL_RCC_CAN1_CLK_ENABLED == 1) {
+    if(HAL_RCC_CAN1_CLK_ENABLED==1){
       __HAL_RCC_CAN1_CLK_ENABLE();
     }
 
@@ -204,7 +215,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
     PB12     ------> CAN2_RX
     PB13     ------> CAN2_TX
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_13;
+    GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -218,20 +229,22 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
     HAL_NVIC_EnableIRQ(CAN2_RX0_IRQn);
     HAL_NVIC_SetPriority(CAN2_RX1_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(CAN2_RX1_IRQn);
-    /* USER CODE BEGIN CAN2_MspInit 1 */
-    /* USER CODE END CAN2_MspInit 1 */
+  /* USER CODE BEGIN CAN2_MspInit 1 */
+  /* USER CODE END CAN2_MspInit 1 */
   }
 }
 
-void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle) {
+void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
+{
 
-  if (canHandle->Instance == CAN1) {
-    /* USER CODE BEGIN CAN1_MspDeInit 0 */
+  if(canHandle->Instance==CAN1)
+  {
+  /* USER CODE BEGIN CAN1_MspDeInit 0 */
 
-    /* USER CODE END CAN1_MspDeInit 0 */
+  /* USER CODE END CAN1_MspDeInit 0 */
     /* Peripheral clock disable */
     HAL_RCC_CAN1_CLK_ENABLED--;
-    if (HAL_RCC_CAN1_CLK_ENABLED == 0) {
+    if(HAL_RCC_CAN1_CLK_ENABLED==0){
       __HAL_RCC_CAN1_CLK_DISABLE();
     }
 
@@ -239,23 +252,25 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle) {
     PB8     ------> CAN1_RX
     PB9     ------> CAN1_TX
     */
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8 | GPIO_PIN_9);
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8|GPIO_PIN_9);
 
     /* CAN1 interrupt Deinit */
     HAL_NVIC_DisableIRQ(CAN1_TX_IRQn);
     HAL_NVIC_DisableIRQ(CAN1_RX0_IRQn);
     HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
-    /* USER CODE BEGIN CAN1_MspDeInit 1 */
+  /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
-    /* USER CODE END CAN1_MspDeInit 1 */
-  } else if (canHandle->Instance == CAN2) {
-    /* USER CODE BEGIN CAN2_MspDeInit 0 */
+  /* USER CODE END CAN1_MspDeInit 1 */
+  }
+  else if(canHandle->Instance==CAN2)
+  {
+  /* USER CODE BEGIN CAN2_MspDeInit 0 */
 
-    /* USER CODE END CAN2_MspDeInit 0 */
+  /* USER CODE END CAN2_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_CAN2_CLK_DISABLE();
     HAL_RCC_CAN1_CLK_ENABLED--;
-    if (HAL_RCC_CAN1_CLK_ENABLED == 0) {
+    if(HAL_RCC_CAN1_CLK_ENABLED==0){
       __HAL_RCC_CAN1_CLK_DISABLE();
     }
 
@@ -263,15 +278,15 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle) {
     PB12     ------> CAN2_RX
     PB13     ------> CAN2_TX
     */
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12 | GPIO_PIN_13);
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12|GPIO_PIN_13);
 
     /* CAN2 interrupt Deinit */
     HAL_NVIC_DisableIRQ(CAN2_TX_IRQn);
     HAL_NVIC_DisableIRQ(CAN2_RX0_IRQn);
     HAL_NVIC_DisableIRQ(CAN2_RX1_IRQn);
-    /* USER CODE BEGIN CAN2_MspDeInit 1 */
+  /* USER CODE BEGIN CAN2_MspDeInit 1 */
 
-    /* USER CODE END CAN2_MspDeInit 1 */
+  /* USER CODE END CAN2_MspDeInit 1 */
   }
 }
 
@@ -292,17 +307,28 @@ void build_tx_header(const CANFrame *frame, CAN_TxHeaderTypeDef *header) {
 }
 
 void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan) {
-  if (hcan->Instance == CAN2) {
+  if(hcan->Instance == CAN1) {
+    osSemaphoreRelease(cansimple_tx_semaphoreHandle);
+  }
+  else if (hcan->Instance == CAN2) {
     osSemaphoreRelease(dronecan_tx_semaphoreHandle);
   }
 }
 void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan) {
-  if (hcan->Instance == CAN2) {
+  if (hcan->Instance == CAN1) {
+    osSemaphoreRelease(cansimple_tx_semaphoreHandle);
+  }
+  else if (hcan->Instance == CAN2) {
     osSemaphoreRelease(dronecan_tx_semaphoreHandle);
   }
+
 }
 void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan) {
-  if (hcan->Instance == CAN2) {
+  
+  if (hcan->Instance == CAN1) {
+    osSemaphoreRelease(cansimple_tx_semaphoreHandle);
+  }
+  else if (hcan->Instance == CAN2) {
     osSemaphoreRelease(dronecan_tx_semaphoreHandle);
   }
 }
