@@ -7,6 +7,8 @@
 extern osMessageQueueId_t log_queueHandle;
 extern osThreadId_t logging_taskHandle;
 
+const log_level_t CURRENT_LOG_LEVEL = LOG_LEVEL_INFO;
+
 // Logging task implementation
 void StartLoggingTask(void *argument) {
   (void)argument;
@@ -49,6 +51,10 @@ void StartLoggingTask(void *argument) {
 
 // Thread-safe logging function
 void log_message(log_level_t level, const char *format, ...) {
+  if (level < CURRENT_LOG_LEVEL) {
+    return; // Skip messages below the current log level
+  }
+
   if (log_queueHandle == NULL) {
     // Fallback to direct printf if queue not available
     printf("LOG QUEUE NOT READY: ");
