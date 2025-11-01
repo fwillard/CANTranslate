@@ -52,7 +52,7 @@ void StartCanSimpleTask(void *argument) {
     // Process CAN Simple messages
     // canardHandleRx(&canard_instance);
 
-    osDelay(10); // Adjust delay as needed
+    osDelay(1000); // Adjust delay as needed
   }
   /* USER CODE END StartCanSimpleTask */
 }

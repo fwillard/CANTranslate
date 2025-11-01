@@ -4,22 +4,31 @@
 #include "cmsis_os.h"
 #include <stdarg.h>
 #include <stdint.h>
+#include <sys/_intsup.h>
 
 #define LOG_MAX_MESSAGE_SIZE 256
+#define LOG_MAX_TASK_NAME_SIZE 16
 
-typedef enum
-{
-    LOG_LEVEL_DEBUG,
-    LOG_LEVEL_INFO,
-    LOG_LEVEL_WARNING,
-    LOG_LEVEL_ERROR,
+#define COLOR_RESET "\033[0m"
+#define COLOR_RED "\033[31m"
+#define COLOR_YELLOW "\033[33m"
+#define COLOR_GREEN "\033[32m"
+#define COLOR_CYAN "\033[36m"
+#define COLOR_WHITE "\033[37m"
+#define COLOR_MAGENTA "\033[35m"
+
+typedef enum {
+  LOG_LEVEL_DEBUG,
+  LOG_LEVEL_INFO,
+  LOG_LEVEL_WARNING,
+  LOG_LEVEL_ERROR,
 } log_level_t;
 
-typedef struct
-{
-    log_level_t level;
-    uint32_t timestamp;
-    char message[LOG_MAX_MESSAGE_SIZE];
+typedef struct {
+  log_level_t level;
+  uint32_t timestamp;
+  char task_name[LOG_MAX_TASK_NAME_SIZE];
+  char message[LOG_MAX_MESSAGE_SIZE];
 } log_message_t;
 
 // Public API

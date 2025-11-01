@@ -257,6 +257,8 @@ static void onTransferReceived(CanardInstance *ins,
 }
 
 static void send_NodeStatus(void) {
+  LOG_INFO("Sending NodeStatus\n");
+
   uint8_t buffer[UAVCAN_PROTOCOL_GETNODEINFO_RESPONSE_MAX_SIZE];
 
   const TickType_t ticks_per_sec = pdMS_TO_TICKS(1000);

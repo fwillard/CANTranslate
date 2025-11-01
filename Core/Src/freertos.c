@@ -28,6 +28,7 @@
 #include "can.h"
 #include "canard.h"
 #include "logging.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +55,7 @@ osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for dronecanTask */
 osThreadId_t dronecanTaskHandle;
@@ -76,6 +77,13 @@ const osThreadAttr_t dronecanTxTask_attributes = {
   .name = "dronecanTxTask",
   .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
+};
+/* Definitions for loggingTask */
+osThreadId_t loggingTaskHandle;
+const osThreadAttr_t loggingTask_attributes = {
+  .name = "loggingTask",
+  .stack_size = 1024 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for dronecan_tx_queue */
 osMessageQueueId_t dronecan_tx_queueHandle;
@@ -112,7 +120,9 @@ void StartDefaultTask(void *argument);
 extern void StartDronecanTask(void *argument);
 extern void StartCanSimpleTask(void *argument);
 extern void StartDronecanTxTask(void *argument);
+extern void StartLoggingTask(void *argument);
 
+extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
@@ -165,7 +175,7 @@ void MX_FREERTOS_Init(void) {
   cansimple_rx_queueHandle = osMessageQueueNew (16, sizeof(CANFrame), &cansimple_rx_queue_attributes);
 
   /* creation of log_queue */
-  log_queueHandle = osMessageQueueNew (16, sizeof(log_message_t), &log_queue_attributes);
+  log_queueHandle = osMessageQueueNew (32, sizeof(log_message_t), &log_queue_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -183,6 +193,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of dronecanTxTask */
   dronecanTxTaskHandle = osThreadNew(StartDronecanTxTask, NULL, &dronecanTxTask_attributes);
+
+  /* creation of loggingTask */
+  loggingTaskHandle = osThreadNew(StartLoggingTask, NULL, &loggingTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -203,9 +216,11 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
+  /* init code for USB_DEVICE */
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
   for (;;) {
-    osDelay(1);
+    osDelay(100);
   }
   /* USER CODE END StartDefaultTask */
 }
