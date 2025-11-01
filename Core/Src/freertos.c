@@ -75,7 +75,7 @@ osThreadId_t dronecanTxTaskHandle;
 const osThreadAttr_t dronecanTxTask_attributes = {
   .name = "dronecanTxTask",
   .stack_size = 1024 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* Definitions for dronecan_tx_queue */
 osMessageQueueId_t dronecan_tx_queueHandle;
