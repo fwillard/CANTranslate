@@ -110,6 +110,11 @@ osMutexId_t micros_mutexHandle;
 const osMutexAttr_t micros_mutex_attributes = {
   .name = "micros_mutex"
 };
+/* Definitions for dronecan_tx_semaphore */
+osSemaphoreId_t dronecan_tx_semaphoreHandle;
+const osSemaphoreAttr_t dronecan_tx_semaphore_attributes = {
+  .name = "dronecan_tx_semaphore"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -155,6 +160,10 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* creation of dronecan_tx_semaphore */
+  dronecan_tx_semaphoreHandle = osSemaphoreNew(3, 3, &dronecan_tx_semaphore_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */

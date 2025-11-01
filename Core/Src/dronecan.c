@@ -17,7 +17,7 @@
 
 extern osMessageQueueId_t dronecan_rx_queueHandle;
 extern osMessageQueueId_t dronecan_tx_queueHandle;
-extern osSemaphoreId_t can_tx_semHandle;
+extern osSemaphoreId_t dronecan_tx_semaphoreHandle;
 
 static CanardInstance canard;
 static uint8_t memory_pool[2048];
@@ -373,7 +373,8 @@ void StartDronecanTask(void *argument) {
   for (;;) {
     processTx(); // drain all pending frames
 
-    // Wait for a message, but only up to 100 ms so we can do periodic checks
+    // Wait for a message, but only up to 100 ms so we can do periodic
+    // checks
     status = osMessageQueueGet(dronecan_rx_queueHandle, &rx_frame, NULL, 1);
     const uint64_t ts = micros64();
 
@@ -421,9 +422,20 @@ void StartDronecanTxTask(void *argument) {
                           osWaitForever) == osOK) {
       build_tx_header(&frame, &tx_header);
 
-      if (HAL_CAN_AddTxMessage(&hcan2, &tx_header, frame.data, &tx_mailbox) !=
-          HAL_OK) {
-        LOG_ERROR("CAN Tx Error\n");
+      osSemaphoreAcquire(dronecan_tx_semaphoreHandle, 10);
+      HAL_StatusTypeDef status =
+          HAL_CAN_AddTxMessage(&hcan2, &tx_header, frame.data, &tx_mailbox);
+
+      if (status != HAL_OK) {
+        LOG_ERROR("CAN Tx Error: %d\n", status);
+        uint32_t tsr = READ_REG(hcan2.Instance->TSR);
+        bool mailbox0_free = (tsr & CAN_TSR_TME0) != 0;
+        bool mailbox1_free = (tsr & CAN_TSR_TME1) != 0;
+        bool mailbox2_free = (tsr & CAN_TSR_TME2) != 0;
+
+        LOG_ERROR("Mailbox 0: %s\n", mailbox0_free ? "FREE" : "FULL");
+        LOG_ERROR("Mailbox 1: %s\n", mailbox1_free ? "FREE" : "FULL");
+        LOG_ERROR("Mailbox 2: %s\n", mailbox2_free ? "FREE" : "FULL");
       }
     }
   }
